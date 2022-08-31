@@ -5,6 +5,11 @@ import "./NavBar.css"
 export const NavBar = () => {
     return (
         <ul className="navbar">
+        <div className="navbar__background" >
+            <picture className="navbar__img" >
+            <img className="nav__logo" src={'/SnapSpot.png'} alt="SnapSpot Logo" /> 
+            </picture> 
+        </div>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Home</Link>
             </li>
@@ -18,7 +23,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/events">Events</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/profile"> profile</Link>
+                <Link className="navbar__link" to="/profile"> Profile</Link>
             </li>
         </ul>
     )

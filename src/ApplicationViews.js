@@ -9,12 +9,12 @@ export const ApplicationViews = () => {
     return (
         <>
         <Switch>
-            <Route exact path="/">
-                <Home />
-            </Route>
+            <Route path="/" element={<div>Home</div>} />
+
+            <Route path="/photos" element={<div>{LocationCard}</div>} />
 
                 {/* Render the animal list when http://localhost:3000/animals */}
-                <Route path="/photos" element={<LocationCard />} />
+
 
         </Switch>
         </>

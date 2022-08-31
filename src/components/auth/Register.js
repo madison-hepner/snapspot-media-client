@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Login.css"
 
 export const Register = () => {
@@ -7,7 +7,7 @@ export const Register = () => {
     const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", email: "" })
     const [conflictDialog, setConflictDialog] = useState(false)
 
-    const navigate = useNavigate()
+    const navigate = useHistory()
 
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }

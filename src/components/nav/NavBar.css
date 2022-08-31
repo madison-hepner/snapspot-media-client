@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+    background-color: white;
+    height: 3em;
+    padding-top: .8em;
+    margin-top: -.2em;
+}
+
+.navbar__item {
+    flex-basis: 20%;
+    list-style-type: none;
+    color: black;
+}
+
+.navbar__link {
+    color: black !important;
+    text-decoration: none;
+}
+
+.navbar__link:hover {
+    color: black !important;
+    border-radius: .1em;
+    font-size: 11.2pt;
+    font-weight: bold;
+}

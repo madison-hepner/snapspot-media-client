@@ -14,17 +14,17 @@
     list-style-type: none;
     justify-content: space-evenly;
     padding-left: 5em;
-    color: black;
+    color: #848884;
 }
 
 .navbar__link {
-    color: black !important;
+    color: #848884 !important;
     text-decoration: none;
     align-content: space-between;
 }
 
 .navbar__link:hover {
-    color: black !important;
+    color: #848884 !important;
     border-radius: .1em;
     font-size: 11.2pt;
     font-weight: bold;

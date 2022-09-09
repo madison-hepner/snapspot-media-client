@@ -1,29 +1,27 @@
+
+
 import React from "react"
-import { Route, Switch, useHistory } from "react-router-dom"
-import { BrowserRouter as Router } from "react-router-dom"
+import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { LocationCard } from "./components/locations/LocationCard"
-import { Login } from "./components/auth/Login"
-import { Register } from "./components/auth/Register"
-
-
-
 
 export const ApplicationViews = () => {
+    return <>
+        <main style={{
+            margin: "5rem 2rem",
+            backgroundColor: "lightgrey"
+        }}>
 
-    return (
-        <>
-            <Router>
-            <Route path="/" element={
-                    <Home />
-            } />
-
-                {/* <Route path="/photos" element={<div>{LocationCard}</div>} /> */}
-
-                {/* Render the animal list when http://localhost:3000/animals */}
+        <Route exact path="/">
+                <Home />
+            </Route>
 
 
-            </Router>
-        </>
-    )
+            <Route exact path="/photos">
+                <LocationCard />
+            </Route>
+
+
+        </main>
+    </>
 }

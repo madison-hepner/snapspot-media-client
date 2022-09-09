@@ -14,9 +14,9 @@ export const LocationList = (props) => {
                 location_posts.map(location_post => {
                     return <section key={`location--${location_post.id}`} className="location">
                         <div className="location__title">{location_post.title}</div>
-                        <div className="location__description">{location_post.description} loc descr here</div>
+                        <div className="location__description">{location_post.description}</div>
                         <div className="location__img">{location_post.img}</div>
-                        <div className="location__img">{location_post.location_type}</div>
+                        <div className="location__type">{location_post?.location_type}</div>
                     </section>
                 })
             }

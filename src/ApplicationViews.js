@@ -13,13 +13,13 @@ export const ApplicationViews = () => {
         }}>
 
         <Route exact path="/">
-                <Home />
-            </Route>
+            <Home />
+        </Route>
 
 
-            <Route exact path="/photos">
-                <LocationList />
-            </Route>
+        <Route exact path="/photos">
+            <LocationList />
+        </Route>
 
 
         </main>

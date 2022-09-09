@@ -1,9 +1,9 @@
 
-
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
 import { LocationCard } from "./components/locations/LocationCard"
+import { LocationList } from "./components/locations/LocationList"
 
 export const ApplicationViews = () => {
     return <>
@@ -18,7 +18,7 @@ export const ApplicationViews = () => {
 
 
             <Route exact path="/photos">
-                <LocationCard />
+                <LocationList />
             </Route>
 
 

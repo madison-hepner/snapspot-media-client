@@ -17,12 +17,33 @@ export const getLocationPostById = (locationPostId) => {
         .then(response => response.json())
 }
 
+export const createLocationPost = (location_post) => {
+    return fetch("http://localhost:8000/location_posts", {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        },
+        body: JSON.stringify(location_post)
+    })
+        .then(res => res.json())
+}
 
-export const deleteLocationPost = (id) => {
-    return fetch(`http://localhost:8000/location_posts/${id}`, {
+export const getLocationTypes = () => {
+    return fetch("http://localhost:8000/location_types", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
+    })
+        .then(response => response.json())
+}
+
+
+export const deleteLocationPost = (id) => {
+    return fetch(`http://localhost:8000/location_posts/${id}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        },
     })
         .then(response => response.json())
 }

@@ -15,7 +15,9 @@ export const LocationList = (props) => {
                     return <section key={`location--${location_post.id}`} className="location">
                         <div className="location__title">{location_post.title}</div>
                         <div className="location__description">{location_post.description}</div>
-                        <div className="location__img">{location_post.img}</div>
+                        <picture>
+                            <img className="media__img" src={location_post.locationImg} alt="media image" />
+                        </picture>
                         <div className="location__type">{location_post?.location_type}</div>
                     </section>
                 })

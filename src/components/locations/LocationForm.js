@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
-import { createLocationPost, getLocationTypes } from "./LocationManager"
+import { createLocationPost, getLocationTypes, getLocationPostById, getLocations } from "./LocationManager"
 
 
 export const LocationPostForm = () => {
     const history = useHistory()
     const [location_types, setLocation_Types] = useState([])
+    const [locations, setLocations] = useState([])
 
     /*
         Since the input fields are bound to the values of
@@ -16,9 +17,9 @@ export const LocationPostForm = () => {
         title: "",
         description: "",
         locationImg: "",
-        locationId: 42,
-        location_type: 2,
-        driver: 1,
+        locationId: 0,
+        location_type: 0,
+        driver: 0,
 
     })
 
@@ -26,6 +27,28 @@ export const LocationPostForm = () => {
         getLocationTypes()
             .then(setLocation_Types)
     }, [])
+
+    useEffect(() => {
+        getLocations()
+            .then(setLocations)
+    }, [])
+
+
+    // useEffect(() => {
+    //     getLocationTypes()
+    //     if (locationId) {
+    //         getLocationPostById(parseInt(locationId))
+    //             .then(editLocationPost => {
+    //                 setCurrentLocationPost({
+    //                     location_type: editLocationPost.location_type,
+    //                     description: editLocationPost.description,
+    //                     title: editLocationPost.title,
+    //                     driver: editLocationPost.driver,
+    //                     locationId: editLocationPost.locationId.id
+    //                 })
+    //             })
+    //     }
+    // }, [])
 
     const handleInputChange = e => {
         const newLocationPostState = { ...currentLocationPost }
@@ -63,10 +86,16 @@ export const LocationPostForm = () => {
                 {/* change to be locationId selection from dropdown  */}
                 <div className="form-group">
                     <label htmlFor="locationId">Location State: </label>
-                    <input type="num" name="locationId" required autoFocus className="form-control"
+                    <select name="locationId" required className="form-control"
                         value={currentLocationPost.locationId}
-                        onChange={handleInputChange}
-                    />
+                        onChange={handleInputChange}>
+                        {
+                            locations.map(location => <option key={location.id} value={location.id}>
+                                {location.locationName}
+                            </option>)
+                        }
+
+                    </select>
                 </div>
                 <div className="form-group">
                     <label htmlFor="locationTypeId">Location Type:</label>
@@ -99,6 +128,11 @@ export const LocationPostForm = () => {
                     }
 
                     // Send POST request to your API
+                    // if (locationId) {
+                    //     updateLocationPost(locationId, location_post)
+                    //         .then(() => history.push("/location_posts"))
+                    // } else {
+
                     createLocationPost(location_post)
                         .then(() => history.push("/location_posts"))
                 }}

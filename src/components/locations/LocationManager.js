@@ -62,8 +62,8 @@ export const getLocationTypes = () => {
         .then(response => response.json())
 }
 
-export const getLocations = () => {
-    return fetch("http://localhost:8000/locations", {
+export const getLocations = (locationId) => {
+    return fetch(`http://localhost:8000/locations`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }

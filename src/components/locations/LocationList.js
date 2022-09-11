@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { getAllLocations, getLocationTypes } from "./LocationManager.js"
+import React, { useEffect, useState} from "react"
+import { getAllLocations, getLocationTypes, getLocations } from "./LocationManager.js"
 import { deleteLocationPost } from "./LocationManager.js"
 import "./LocationList.css"
 import { useHistory, useParams } from 'react-router-dom'
@@ -7,7 +7,9 @@ import { useHistory, useParams } from 'react-router-dom'
 export const LocationList = (props) => {
     const [ location_posts, setLocations ] = useState([])
     const [location_types, setLocation_Types] = useState([])
+    const [locations, setLocation] = useState([])
     const history = useHistory()
+    const {locationId} = useParams();
 
     useEffect(() => {
         getAllLocations().then(data => setLocations(data))
@@ -16,6 +18,11 @@ export const LocationList = (props) => {
     useEffect(() => {
         getLocationTypes()
             .then(setLocation_Types)
+    }, [])
+
+    useEffect(() => {
+        getLocations()
+            .then(setLocation)
     }, [])
 
     const handleDeleteLocationPost = (id) => {
@@ -39,7 +46,7 @@ export const LocationList = (props) => {
                         <picture>
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
-                        <div className="location__type">{location_post.location_type}</div>
+                        <div className="location__type">{location_post?.location_type}</div>
                         <div className="location">{location_post.locationId}</div>
 
                         <div className="media__delete">

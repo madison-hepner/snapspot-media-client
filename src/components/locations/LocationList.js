@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react"
 import { getAllLocations } from "./LocationManager.js"
 import { deleteLocationPost } from "./LocationManager.js"
 import "./LocationList.css"
+import { useHistory, useParams } from 'react-router-dom'
 
 export const LocationList = (props) => {
     const [ location_posts, setLocations ] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         getAllLocations().then(data => setLocations(data))
@@ -17,6 +19,12 @@ export const LocationList = (props) => {
 
     return (
         <article className="location_posts_list">
+            <button className="btn btn-2 btn-sep icon-create"
+                onClick={() => {
+                    history.push({ pathname: "/location_posts/new" })
+                }}
+            >Make New Post</button>
+
             {
                 location_posts.map(location_post => {
                     return <section key={`location--${location_post.id}`} className="location">

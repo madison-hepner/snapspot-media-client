@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
-import { createLocationPost, getLocationTypes} from "./LocationManager"
+import { createLocationPost, getLocationTypes } from "./LocationManager"
 
 
 export const LocationPostForm = () => {
@@ -27,11 +27,13 @@ export const LocationPostForm = () => {
             .then(setLocation_Types)
     }, [])
 
-    const changeLocationPostState = (domEvent) => {
+    const handleInputChange = e => {
         const newLocationPostState = { ...currentLocationPost }
-        newLocationPostState[domEvent.target.name] = domEvent.target.value
-        setCurrentLocationPost(changeLocationPostState)
+        newLocationPostState[e.target.name] = e.target.value
+        if (e.target.name.includes("Id")) newLocationPostState[e.target.name] = parseInt(e.target.value)
+        setCurrentLocationPost(newLocationPostState)
     }
+
 
     return (
         <form className="gameForm">
@@ -41,21 +43,21 @@ export const LocationPostForm = () => {
                     <label htmlFor="title">Title: </label>
                     <input type="text" name="title" required autoFocus className="form-control"
                         value={currentLocationPost.title}
-                        onChange={changeLocationPostState}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description: </label>
                     <input type="text" name="description" required autoFocus className="form-control"
                         value={currentLocationPost.description}
-                        onChange={changeLocationPostState}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="locationImg">Location Image </label>
-                    <input type="url" name="locationImg" required autoFocus className="form-control"
+                    <input type="text" name="locationImg" required autoFocus className="form-control"
                         value={currentLocationPost.locationImg}
-                        onChange={changeLocationPostState}
+                        onChange={handleInputChange}
                     />
                 </div>
                 {/* change to be locationId selection from dropdown  */}
@@ -63,14 +65,14 @@ export const LocationPostForm = () => {
                     <label htmlFor="locationId">Location State: </label>
                     <input type="num" name="locationId" required autoFocus className="form-control"
                         value={currentLocationPost.locationId}
-                        onChange={changeLocationPostState}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="locationTypeId">Location Type:</label>
                     <select name="location_type" required className="form-control"
                         value={currentLocationPost.location_type}
-                        onChange={changeLocationPostState}>
+                        onChange={handleInputChange}>
                         {
                             location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
                                 {location_type.location_type}

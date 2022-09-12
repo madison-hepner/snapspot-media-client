@@ -29,7 +29,7 @@ export const createLocationPost = location_post => {
         .then(res => res.json())
 }
 
-const updateLocationPost = (id, location_post) => {
+export const updateLocationPost = (id, location_post) => {
     return fetch(`http://localhost:8000/location_posts/${id}`, {
         method: "PUT",
         headers: {

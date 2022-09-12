@@ -6,6 +6,7 @@ import { LocationCard } from "./components/locations/LocationCard"
 import { LocationList } from "./components/locations/LocationList"
 import { LocationPostForm } from "./components/locations/LocationForm"
 import { RoadList } from "./components/roads/RoadList"
+import { RoadPostForm } from "./components/roads/RoadForm"
 
 export const ApplicationViews = () => {
     
@@ -30,6 +31,10 @@ export const ApplicationViews = () => {
 
         <Route exact path="/location_posts/new">
             <LocationPostForm />
+        </Route>
+
+        <Route exact path="/road_posts/new">
+            <RoadPostForm />
         </Route>
 
 

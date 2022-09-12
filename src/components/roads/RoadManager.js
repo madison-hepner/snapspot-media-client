@@ -44,3 +44,15 @@ export const deleteRoadPost = (id) => {
     })
         .then(response => response.json())
 }
+
+export const createRoadPost = road_post => {
+    return fetch("http://localhost:8000/road_posts", {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(road_post)
+    })
+        .then(res => res.json())
+}

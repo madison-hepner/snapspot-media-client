@@ -101,7 +101,8 @@ export const EventPostForm = () => {
                 <div className="form-group">
                     <label htmlFor="date">Time and Date:</label>
                     <div>
-                    <DatePicker selected={date} onChange={date => setDate(date)} value={currentEventPost.date}/>
+                    <DatePicker selected={date} onChange={date => setDate(date)} value={currentEventPost.date}
+                     showTimeSelect />
                     </div>
                 </div>
             </fieldset>

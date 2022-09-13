@@ -1,4 +1,6 @@
 import React from "react";
+import { SearchBar } from "./components/search/SearchBar";
+import TextField from "@mui/material/TextField";
 
 export const Home = () => (
     <>
@@ -8,5 +10,8 @@ export const Home = () => (
         <address>
             <div>more stuff here</div>
         </address>
+
+
+
     </>
 )

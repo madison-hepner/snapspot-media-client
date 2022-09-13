@@ -3,10 +3,40 @@ import "./SearchBar.css"
 import { SearchBarList } from "./SearchBarList";
 import { getLocations } from "./SearchManager";
 
-
+// const getFilteredItems = (query, items) => {
+//     if (!query) {
+//         return items
+//     }
+//     return items.filteredItems(locations => location.locationName.includes(query))
+// }
 
 
 export const SearchBar = () => {
+    // const [query, setQuery] = useState("");
+    // const [locations, setLocations ] = useState([]);
+
+
+    // const {location} = getLocations();
+    // const {items} = location
+
+    // const filteredItems = getFilteredItems(query, items)
+
+
+
+    // return (
+    //     <div className="searchbar__">
+    //     <label>Search</label>
+    //     <input type="text" onChange={e = setQuery(e.target.value) } />
+    //     {filteredItems.map(value => <p key={value.name}>{value.name}</p>)}
+
+
+
+    //     </div>
+    // )
+
+//////////////////////////
+
+
     const [searchInput, setSearchInput] = useState("");
     const [locations, setLocations] = useState([])
 

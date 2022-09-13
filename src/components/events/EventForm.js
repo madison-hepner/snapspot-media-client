@@ -23,7 +23,7 @@ export const EventPostForm = () => {
         locationId: 0,
         location_type: 0,
         driver: 0,
-        date: new Date().toLocaleString(),
+        date: new Date()
 
     })
 
@@ -119,7 +119,8 @@ export const EventPostForm = () => {
                         description: currentEventPost.description,
                         locationImg: currentEventPost.locationImg,
                         locationId: parseInt(currentEventPost.locationId),
-                        location_type: parseInt(currentEventPost.location_type)
+                        location_type: parseInt(currentEventPost.location_type),
+                        date: currentEventPost.date
                     }
 
                     // Send POST request to your API

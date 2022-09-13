@@ -41,9 +41,6 @@ export const EventList = (props) => {
                     return <section key={`event--${event_post.id}`} className="event">
                         <div className="event__title">{event_post.event_name}</div>
                         <div className="event__description">{event_post.description}</div>
-                        <picture>
-                            <img className="media__img" src={event_post.locationImg} alt="media image" />
-                        </picture>
                         <div className="location__type">{event_post.location_type}</div>
                         <div className="location">{event_post.locationId}</div>
                         <div className="event">{event_post.date}</div>

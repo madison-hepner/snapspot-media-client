@@ -19,7 +19,6 @@ export const EventPostForm = () => {
     const [currentEventPost, setCurrentEventPost] = useState({
         event_name: "",
         description: "",
-        locationImg: "",
         locationId: 0,
         location_type: 0,
         driver: 0,
@@ -64,13 +63,6 @@ export const EventPostForm = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="locationImg">Location Image </label>
-                    <input type="text" name="locationImg" required autoFocus className="form-control"
-                        value={currentEventPost.locationImg}
-                        onChange={handleInputChange}
-                    />
-                </div>
                 {/* change to be locationId selection from dropdown  */}
                 <div className="form-group">
                     <label htmlFor="locationId">Location State: </label>
@@ -101,7 +93,7 @@ export const EventPostForm = () => {
                 <div className="form-group">
                     <label htmlFor="date">Time and Date:</label>
                     <div>
-                    <DatePicker selected={date} onChange={date => setDate(date)} value={currentEventPost.date} />
+                    <DatePicker name="date" selected={date} onChange={date => setDate(date)} value={currentEventPost.date} />
                     </div>
                 </div>
             </fieldset>
@@ -116,7 +108,6 @@ export const EventPostForm = () => {
                     const event_post = {
                         event_name: currentEventPost.event_name,
                         description: currentEventPost.description,
-                        locationImg: currentEventPost.locationImg,
                         locationId: parseInt(currentEventPost.locationId),
                         location_type: parseInt(currentEventPost.location_type),
                         date: currentEventPost.date

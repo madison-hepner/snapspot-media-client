@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
 import { createEventPost, getLocationTypes, getEventPostById, getLocations } from "./EventManager"
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateTimePicker from 'react-datetime-picker';
+// import "react-datepicker/dist/react-datepicker.css";
 
 
 export const EventPostForm = () => {
     const history = useHistory()
     const [location_types, setLocation_Types] = useState([])
     const [locations, setLocations] = useState([])
-    const [date, setDate] = useState(new Date());
+    const [value, onChange] = useState(new Date());
 
     /*
         Since the input fields are bound to the values of
@@ -93,7 +93,7 @@ export const EventPostForm = () => {
                 <div className="form-group">
                     <label htmlFor="date">Time and Date:</label>
                     <div>
-                        <DatePicker selected={date} onChange={date => setDate(date)} />
+                        <DateTimePicker name="date" onChange={onChange} value={value} />
                     </div>
                 </div>
             </fieldset>

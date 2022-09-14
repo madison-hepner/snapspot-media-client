@@ -1,87 +1,129 @@
-import React, { useState, useEffect } from "react"
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect} from "react"
+import { useHistory, useParams } from 'react-router-dom'
 import { createLocationPost, getLocationTypes, getLocationPostById, getLocations, updateLocationPost } from "./LocationManager"
 
 
 export const LocationEditForm = () => {
     const history = useHistory()
-    const [location_types, setLocation_Types] = useState([])
+    const [isLoading, setIsLoading] =  useState(true);
+    const {locationPostId} =  useParams();
+    
     const [locations, setLocations] = useState([])
+    const [location_types, setLocation_Types] = useState([])
 
+    const loadLocations = () => {
+        return getLocations().then(data => {
+            setLocations(data)
+        })
+    }
+
+    const loadLocationTypes = () => {
+        return getLocationTypes().then(data => {
+            setLocation_Types(data)
+        })
+    }
 
     useEffect(() => {
-        getLocationTypes()
-            .then(setLocation_Types)
+        loadLocations()
     }, [])
 
+
     useEffect(() => {
-        getLocations()
-            .then(setLocations)
+        loadLocationTypes()
     }, [])
 
+    const [current_location_post, set_current_location_post] = useState({
+        title: "",
+        description: "",
+        locationImg: "",
+        locationId: 0,
+        location_type: 0,
+        driver: 0,
+    });
 
-
-    useEffect(() => {
-        getLocationTypes()
+    const loadLocationPost = () => {
         if (locationPostId) {
-            getLocationPostById(parseInt(locationPostId))
-                .then(editLocationPost => {
-                    setCurrentLocationPost({
-                        location_type: updateLocationPost.location_type,
-                        description: updateLocationPost.description,
-                        title: updateLocationPost.title,
-                        driver: updateLocationPost.driver,
-                        locationId: updateLocationPost.locationId.id
+            getLocationPostById(locationPostId)
+                .then(data => {
+                    set_current_location_post({
+                        id: locationPostId,
+                        title: data.title,
+                        description: data.description,
+                        locationImg: data.locationImg,
+                        locationId: data.locationId,
+                        location_type: data.location_type,
+                        driver: data.driver
                     })
                 })
         }
+    }
+
+    useEffect(() => {
+        loadLocationPost()
     }, [])
 
 
-    const updateExistingPost = evt => {
-        evt.preventDefault()
-        setIsLoading(true);
+    useEffect(() => {
+        console.log('currentLocationPost', current_location_post)
+    }, [current_location_post])
 
+    const handleFieldChange = (domEvent) => {
+        const editedLocationPost = {...current_location_post}
+        let selectedVal = domEvent.target.value
+        editedLocationPost[domEvent.target.name] = selectedVal
+        set_current_location_post(editedLocationPost)
     }
 
-    const handleInputChange = e => {
-        const newLocationPostState = { ...currentLocationPost }
-        newLocationPostState[e.target.name] = e.target.value
-        if (e.target.name.includes("Id")) newLocationPostState[e.target.name] = parseInt(e.target.value)
-        setCurrentLocationPost(newLocationPostState)
-    }
+
+    // useEffect(() => {
+    //     getLocationTypes()
+    //     if (locationPostId) {
+    //         getLocationPostById(parseInt(locationPostId))
+    //             .then(editLocationPost => {
+    //                 setCurrentLocationPost({
+    //                     location_type: updateLocationPost.location_type,
+    //                     description: updateLocationPost.description,
+    //                     title: updateLocationPost.title,
+    //                     driver: updateLocationPost.driver,
+    //                     locationId: updateLocationPost.locationId.id
+    //                 })
+    //             })
+    //     }
+    // }, [])
+
+
 
     return (
          <form className="gameForm">
-            <h2 className="gameForm__title">Make New Post</h2>
+            <h2 className="gameForm__title">Edit Post</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
                     <input type="text" name="title" required autoFocus className="form-control"
-                        value={updateLocationPost.title}
-                        onChange={handleInputChange}
+                        value={current_location_post.title}
+                        onChange={handleFieldChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description: </label>
                     <input type="text" name="description" required autoFocus className="form-control"
-                        value={updateLocationPost.description}
-                        onChange={handleInputChange}
+                        value={current_location_post.description}
+                        onChange={handleFieldChange}
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="locationImg">Location Image </label>
                     <input type="text" name="locationImg" required autoFocus className="form-control"
-                        value={updateLocationPost.locationImg}
-                        onChange={handleInputChange}
+                        value={current_location_post.locationImg}
+                        onChange={handleFieldChange}
                     />
                 </div>
                 {/* change to be locationId selection from dropdown  */}
                 <div className="form-group">
                     <label htmlFor="locationId">Location State: </label>
                     <select name="locationId" required className="form-control"
-                        value={updateLocationPost.locationId}
-                        onChange={handleInputChange}>
+                        value={current_location_post.locationId}
+                        onChange={handleFieldChange}>
                         {
                             locations.map(location => <option key={location.id} value={location.id}>
                                 {location.locationName}
@@ -93,8 +135,8 @@ export const LocationEditForm = () => {
                 <div className="form-group">
                     <label htmlFor="locationTypeId">Location Type:</label>
                     <select name="location_type" required className="form-control"
-                        value={updateLocationPost.location_type}
-                        onChange={handleInputChange}>
+                        value={current_location_post.location_type}
+                        onChange={handleFieldChange}>
                         {
                             location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
                                 {location_type.location_type}
@@ -107,29 +149,27 @@ export const LocationEditForm = () => {
 
             {/* TODO: create the rest of the input fields */}
 
-            <button type="submit"
+            <button
+                type="submit"
                 onClick={evt => {
-                    // Prevent form from being submitted
                     evt.preventDefault()
 
-                    const location_post = {
-                        title: updateLocationPost.title,
-                        description: updateLocationPost.description,
-                        locationImg: updateLocationPost.locationImg,
-                        locationId: parseInt(updateLocationPost.locationId),
-                        location_type: parseInt(updateLocationPost.location_type)
+                    const updatedPost = {
+                        title: current_location_post.title,
+                        description: current_location_post.description,
+                        locationImg: current_location_post.locationImg,
+                        locationId: current_location_post.locationId,
+                        location_type: current_location_post.location_type,
+                        approved: 1
                     }
 
-                    // Send POST request to your API
-                    // if (locationId) {
-                    //     updateLocationPost(locationId, location_post)
-                    //         .then(() => history.push("/location_posts"))
-                    // } else {
-
-                    updateLocationPost(location_post)
-                        .then(() => history.push("/location_posts"))
+                    updateLocationPost(updatedPost, locationPostId)
+                    .then(() => history.push('/photos'))
                 }}
-                className="btn btn-primary">Edit</button>
+                className="formBtn"
+                id="postForm__formBtn">
+                    confirm changes
+                </button>
         </form>
     )
 

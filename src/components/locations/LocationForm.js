@@ -34,21 +34,21 @@ export const LocationPostForm = () => {
     }, [])
 
 
-    useEffect(() => {
-        getLocationTypes()
-        if (locationId) {
-            getLocationPostById(parseInt(locationId))
-                .then(editLocationPost => {
-                    setCurrentLocationPost({
-                        location_type: editLocationPost.location_type,
-                        description: editLocationPost.description,
-                        title: editLocationPost.title,
-                        driver: editLocationPost.driver,
-                        locationId: editLocationPost.locationId.id
-                    })
-                })
-        }
-    }, [])
+    // useEffect(() => {
+    //     getLocationTypes()
+    //     if (locationId) {
+    //         getLocationPostById(parseInt(locationId))
+    //             .then(editLocationPost => {
+    //                 setCurrentLocationPost({
+    //                     location_type: editLocationPost.location_type,
+    //                     description: editLocationPost.description,
+    //                     title: editLocationPost.title,
+    //                     driver: editLocationPost.driver,
+    //                     locationId: editLocationPost.locationId.id
+    //                 })
+    //             })
+    //     }
+    // }, [])
 
     const handleInputChange = e => {
         const newLocationPostState = { ...currentLocationPost }

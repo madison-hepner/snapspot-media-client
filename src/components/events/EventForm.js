@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from 'react-router-dom'
 import { createEventPost, getLocationTypes, getEventPostById, getLocations } from "./EventManager"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 export const EventPostForm = () => {
@@ -93,7 +93,7 @@ export const EventPostForm = () => {
                 <div className="form-group">
                     <label htmlFor="date">Time and Date:</label>
                     <div>
-                    <DatePicker name="date" selected={date} onChange={date => setDate(date)} value={currentEventPost.date} />
+                        <DatePicker selected={date} onChange={date => setDate(date)} />
                     </div>
                 </div>
             </fieldset>
@@ -110,6 +110,7 @@ export const EventPostForm = () => {
                         description: currentEventPost.description,
                         locationId: parseInt(currentEventPost.locationId),
                         location_type: parseInt(currentEventPost.location_type),
+                        driver: currentEventPost.driver,
                         date: currentEventPost.date
                     }
 

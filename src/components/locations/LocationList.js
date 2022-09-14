@@ -30,6 +30,11 @@ export const LocationList = (props) => {
         .then(() => getAllLocations().then(setLocations));
     };
 
+    const handleEditButton = e => {
+        const locationPostId = parseInt(e.target.id.split("--")[1])
+        history.push(`/location_posts/${locationPostId}/edit`)
+    }
+
     return (
         <article className="location_posts_list">
             <button className="btn btn-2 btn-sep icon-create"
@@ -54,6 +59,8 @@ export const LocationList = (props) => {
                                 <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteLocationPost(location_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
+
+                        <button classname="location_editButton" id={"edit--" + location_post.id} onClick={handleEditButton}>Edit Post</button>
                         
                     </section>
                 })

@@ -6,3 +6,12 @@ export const getLocations = (locationId) => {
     })
         .then(response => response.json())
 }
+
+export const searchLocations = (searchTerm) => {
+    return fetch(`http://localhost:8000/locations?q=${searchTerm}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+        .then(response => response.json())
+}   

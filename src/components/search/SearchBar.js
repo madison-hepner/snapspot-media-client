@@ -1,74 +1,73 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import "./SearchBar.css"
 import { SearchBarList } from "./SearchBarList";
-import { getLocations } from "./SearchManager";
+import { getLocations, searchLocations } from "./SearchManager";
 
-// const getFilteredItems = (query, items) => {
-//     if (!query) {
-//         return items
-//     }
-//     return items.filteredItems(locations => location.locationName.includes(query))
-// }
 
 
 export const SearchBar = () => {
-    // const [query, setQuery] = useState("");
-    // const [locations, setLocations ] = useState([]);
-
-
-    // const {location} = getLocations();
-    // const {items} = location
-
-    // const filteredItems = getFilteredItems(query, items)
-
-
-
-    // return (
-    //     <div className="searchbar__">
-    //     <label>Search</label>
-    //     <input type="text" onChange={e = setQuery(e.target.value) } />
-    //     {filteredItems.map(value => <p key={value.name}>{value.name}</p>)}
-
-
-
-    //     </div>
-    // )
-
-//////////////////////////
-
 
     const [searchInput, setSearchInput] = useState("");
     const [locations, setLocations] = useState([])
-
-
+    const [filteredLocations, setFilteredLocations] = useState([])
+    const [ reset, setReset ] = useState(false)
+    
     useEffect(() => {
-        getLocations().then(data => setLocations(data))
+        getLocations().then((data) => {
+            setLocations(data)
+            setFilteredLocations(data)
+        })
     }, [])
     
+    const handleInput = (e) => {
+        e.preventDefault()
+
+
+        setSearchInput(e.target.value)
+
+    }
+
 
     const handleChange = (e) => {
-        e.preventDefault();
-        setSearchInput(e.target.value);
-      };
+
+      console.log(searchInput)
 
     if (searchInput.length > 0) {
-        locations.filter((location) => {
-        return location.locationName.match(searchInput);
+        const x = locations.filter((location) => {
+            console.log(searchInput)
+            if (location.locationName === searchInput) {
+                return true
+            }
+            return false
+
+
     });
-    }
+        setFilteredLocations(x)
+    }}
+
+    useEffect(() => {
+        getLocations(setLocations);
+      }, []);
 
 
     return (
         <div>
-            <input
-                type="text"
-                placeholder="Search here"
-                onChange={handleChange}
-                value={searchInput} 
-            />
+              <input
+                    type="text"
+                    id="search"
+                    placeholder="Search Location"
+                    autoComplete="off"
+                    onChange={handleInput}>
+                    </input>
+                <button 
+                        type="button"
+                        onClick={() => {handleChange()}}>
+                                Search
+                    </button>
+
             <div className="searchbarlist__card" key={location.id}>
                 <ul className="searchbarlist__listitem">
-                    {locations.map((location) => (
+                    {filteredLocations.map((location) => (
                         <li key={location.id}>{location.locationName}</li>
                     ))}
                 </ul>

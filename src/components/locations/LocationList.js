@@ -13,6 +13,7 @@ export const LocationList = (props) => {
     const history = useHistory()
     const {locationId} = useParams();
     const [searchInput, setSearchInput] = useState("");
+    const [ searchCategories, setSearchCategories] = useState("")
 
 
 
@@ -33,6 +34,7 @@ export const LocationList = (props) => {
     useEffect(() => {
         getAllLocations().then((data) => {
             setLocations(data)
+            setLocation_Types(data)
             setFilteredLocationPosts(data)
         })
     }, [])
@@ -47,6 +49,15 @@ export const LocationList = (props) => {
 
         const locationNameObj = locations.find((l) => {
             if (l.locationName === searchInput) {
+                return true
+            }
+            return false
+        })
+
+    const handleCategoryChange = (e) => {
+
+        const locationTypeObj = location_types.find((l_t) => {
+            if (l_t.location_type === searchCategories) {
                 return true
             }
             return false
@@ -68,6 +79,20 @@ export const LocationList = (props) => {
     });
         setFilteredLocationPosts(x)
     }}
+
+    if (searchCategories.length > 0) {
+        const x = location_types.filter((location_type) => {
+            console.log(searchCategories)
+            if (location_type.location_type === locationTypeObj.id) {
+                return true
+            }
+            return false
+
+
+    });
+        setFilteredLocationPosts(x)
+    }}
+
 
     
 
@@ -108,6 +133,18 @@ export const LocationList = (props) => {
                     history.push({ pathname: "/location_posts/new" })
                 }}
             >Make New Post</button>
+
+        <label htmlFor="locationTypeId">Location Type:</label>
+                    <select name="location_type" required className="form-control"
+                        // value={currentLocationPost.location_type}
+                        onChange={handleInput}>
+                        {
+                            location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
+                                {location_type.location_type}
+                            </option>)
+                        }
+
+                    </select>
 
             {
                 filteredLocationPosts.map(location_post => {

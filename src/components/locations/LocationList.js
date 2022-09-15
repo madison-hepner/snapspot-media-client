@@ -88,7 +88,7 @@ export const LocationList = (props) => {
             <input
                     type="text"
                     id="search"
-                    placeholder="Search Location"
+                    placeholder="Search By State"
                     autoComplete="off"
                     onChange={handleInput}>
                     </input>

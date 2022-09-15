@@ -1,15 +1,16 @@
 import { React, useState, useEffect, useRef } from "react";
 import "./SearchBar.css"
 import { SearchBarList } from "./SearchBarList";
-import { getLocations, searchLocations } from "./SearchManager";
-
+import { getLocations, searchLocations, getLocationPostByLocation } from "./SearchManager";
 
 
 export const SearchBar = () => {
 
     const [searchInput, setSearchInput] = useState("");
     const [locations, setLocations] = useState([])
+    const [ location_posts, setLocation_Posts] = useState([])
     const [filteredLocations, setFilteredLocations] = useState([])
+    const [filteredLocationPosts, setFilteredLocationPosts] = useState([])
     const [ reset, setReset ] = useState(false)
     
     useEffect(() => {
@@ -18,13 +19,21 @@ export const SearchBar = () => {
             setFilteredLocations(data)
         })
     }, [])
+
+    // useEffect(() => {
+    //     getAllLocations().then((data) => {
+    //         setLocation_Posts(data)
+    //         setFilteredLocationPosts(data)
+    //     })
+    // }, [])
+
+    // const getFilteredPosts = () = {
+    //     return getLocationPostByLocationType(+locationId).then()
+    // }
     
     const handleInput = (e) => {
         e.preventDefault()
-
-
         setSearchInput(e.target.value)
-
     }
 
 
@@ -44,6 +53,8 @@ export const SearchBar = () => {
     });
         setFilteredLocations(x)
     }}
+
+    
 
     useEffect(() => {
         getLocations(setLocations);

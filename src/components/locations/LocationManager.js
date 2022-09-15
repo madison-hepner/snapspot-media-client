@@ -15,9 +15,20 @@ export const getLocationPostById = (locationPostId) => {
         }
     })
         .then(response => response.json())
+
+
 }
 
-export const createLocationPost = location_post => {
+export const getLocationPostByLocationType = (location_type_id) => {
+    return fetch(`http://localhost:8000/location_posts/${location_type_id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+      .then(res => res.json())
+  }
+
+export const createLocationPost = (location_post) => {
     return fetch("http://localhost:8000/location_posts", {
         method: "POST",
         headers: {

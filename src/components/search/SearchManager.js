@@ -15,3 +15,14 @@ export const searchLocations = (searchTerm) => {
     })
         .then(response => response.json())
 }   
+
+export const getLocationPostByLocation = (locationId) => {
+    return fetch(`http://localhost:8000/location_posts/${locationId}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+
+
+}

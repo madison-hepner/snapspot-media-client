@@ -28,6 +28,11 @@ export const RoadList = (props) => {
         .then(() => getAllRoadPosts().then(setRoadPosts));
     };
 
+    const handleEditButton = e => {
+        const roadPostId = parseInt(e.target.id.split("--")[1])
+        history.push(`/road_posts/${roadPostId}/edit`)
+    }
+
     return (
         <article className="road_posts_list">
             <button className="btn btn-2 btn-sep icon-create"
@@ -52,6 +57,8 @@ export const RoadList = (props) => {
                                 <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteRoadPost(road_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
+
+                        <button classname="road_editButton" id={"edit--" + road_post.id} onClick={handleEditButton}>Edit Post</button>
                         
                     </section>
                 })

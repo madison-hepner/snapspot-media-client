@@ -9,6 +9,7 @@ import { RoadList } from "./components/roads/RoadList"
 import { RoadPostForm } from "./components/roads/RoadForm"
 import { EventList } from "./components/events/EventList"
 import { EventPostForm } from "./components/events/EventForm"
+import { EventEditForm } from "./components/events/EventEditForm"
 
 export const ApplicationViews = () => {
     
@@ -45,6 +46,10 @@ export const ApplicationViews = () => {
 
         <Route exact path="/event_posts/new">
             <EventPostForm />
+        </Route>
+
+        <Route exact path="/event_posts/:eventPostId/edit">
+            <EventEditForm />
         </Route>
 
 

@@ -2,7 +2,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { Home } from "./Home"
-import { LocationCard } from "./components/locations/LocationCard"
 import { LocationList } from "./components/locations/LocationList"
 import { LocationPostForm } from "./components/locations/LocationForm"
 import { RoadList } from "./components/roads/RoadList"
@@ -24,8 +23,7 @@ export const ApplicationViews = () => {
         <Route exact path="/">
             <Home />
         </Route>
-
-
+        
         <Route exact path="/photos">
             <LocationList />
         </Route>

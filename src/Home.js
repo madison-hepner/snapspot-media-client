@@ -1,4 +1,5 @@
 import React from "react";
+import { SearchBar } from "./components/search/SearchBar";
 
 export const Home = () => (
     <>
@@ -8,5 +9,8 @@ export const Home = () => (
         <address>
             <div>more stuff here</div>
         </address>
+
+        <SearchBar />
+
     </>
 )

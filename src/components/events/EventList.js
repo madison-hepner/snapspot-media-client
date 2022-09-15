@@ -9,6 +9,8 @@ export const EventList = (props) => {
     const [locations, setLocation] = useState([])
     const history = useHistory()
 
+    //not sure
+
     useEffect(() => {
         getAllEventPosts().then(data => setEventPosts(data))
     }, [])

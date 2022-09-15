@@ -11,6 +11,7 @@ import { EventList } from "./components/events/EventList"
 import { EventPostForm } from "./components/events/EventForm"
 import { EventEditForm } from "./components/events/EventEditForm"
 import { LocationEditForm } from "./components/locations/LocationEditForm"
+import { RoadEditForm } from "./components/roads/RoadEditForm"
 
 export const ApplicationViews = () => {
     
@@ -55,6 +56,10 @@ export const ApplicationViews = () => {
             
         <Route exact path="/location_posts/:locationPostId/edit">
             <LocationEditForm />
+        </Route>
+
+        <Route exact path="/road_posts/:roadPostId/edit">
+            <RoadEditForm />
         </Route>
 
 

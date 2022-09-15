@@ -40,14 +40,14 @@ export const createLocationPost = (location_post) => {
         .then(res => res.json())
 }
 
-export const updateLocationPost = (id, location_post) => {
+export const updateLocationPost = (editedLocationPost, id) => {
     return fetch(`http://localhost:8000/location_posts/${id}`, {
         method: "PUT",
         headers: {
             "Authorization": `Token ${localStorage.getItem("lu_token")}`,
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(location_post)
+        body: JSON.stringify(editedLocationPost)
     })
 }
 

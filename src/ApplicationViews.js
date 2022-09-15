@@ -51,6 +51,7 @@ export const ApplicationViews = () => {
 
         <Route exact path="/event_posts/:eventPostId/edit">
             <EventEditForm />
+        </Route>
             
         <Route exact path="/location_posts/:locationPostId/edit">
             <LocationEditForm />

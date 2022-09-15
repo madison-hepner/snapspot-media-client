@@ -28,6 +28,11 @@ export const EventList = (props) => {
         .then(() => getAllEventPosts().then(setEventPosts));
     };
 
+    const handleEditButton = e => {
+        const eventPostId = parseInt(e.target.id.split("--")[1])
+        history.push(`/event_posts/${eventPostId}/edit`)
+    }
+
     return (
         <article className="event_posts_list">
             <button className="btn btn-2 btn-sep icon-create"
@@ -41,9 +46,6 @@ export const EventList = (props) => {
                     return <section key={`event--${event_post.id}`} className="event">
                         <div className="event__title">{event_post.event_name}</div>
                         <div className="event__description">{event_post.description}</div>
-                        <picture>
-                            <img className="media__img" src={event_post.locationImg} alt="media image" />
-                        </picture>
                         <div className="location__type">{event_post.location_type}</div>
                         <div className="location">{event_post.locationId}</div>
                         <div className="event">{event_post.date}</div>
@@ -53,6 +55,8 @@ export const EventList = (props) => {
                                 <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteEventPost(event_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
+
+                        <button classname="event_editButton" id={"edit--" + event_post.id} onClick={handleEditButton}>Edit Post</button>
                         
                     </section>
                 })

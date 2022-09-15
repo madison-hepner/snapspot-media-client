@@ -9,13 +9,9 @@ export const EventPostForm = () => {
     const history = useHistory()
     const [location_types, setLocation_Types] = useState([])
     const [locations, setLocations] = useState([])
-    const [value, onChange] = useState(new Date());
+    const [date, setDate] = useState(new Date());
 
-    /*
-        Since the input fields are bound to the values of
-        the properties of this state variable, you need to
-        provide some default values.
-    */
+
     const [currentEventPost, setCurrentEventPost] = useState({
         event_name: "",
         description: "",
@@ -93,12 +89,11 @@ export const EventPostForm = () => {
                 <div className="form-group">
                     <label htmlFor="date">Time and Date:</label>
                     <div>
-                        <DateTimePicker name="date" onChange={onChange} value={value} />
+                    <DateTimePicker onChange={date => setDate(date)} name="date" value={date}/>
                     </div>
                 </div>
             </fieldset>
 
-            {/* TODO: create the rest of the input fields */}
 
             <button type="submit"
                 onClick={evt => {
@@ -111,7 +106,7 @@ export const EventPostForm = () => {
                         locationId: parseInt(currentEventPost.locationId),
                         location_type: parseInt(currentEventPost.location_type),
                         driver: currentEventPost.driver,
-                        date: currentEventPost.date
+                        date: date
                     }
 
                     // Send POST request to your API

@@ -36,7 +36,6 @@ export const EventEditForm = () => {
     const [current_event_post, set_current_event_post] = useState({
         event_name: "",
         description: "",
-        locationImg: "",
         locationId: 0,
         location_type: 0,
         driver: 0,
@@ -51,7 +50,6 @@ export const EventEditForm = () => {
                         id: eventPostId,
                         event_name: data.event_name,
                         description: data.description,
-                        locationImg: data.locationImg,
                         locationId: data.locationId,
                         location_type: data.location_type,
                         driver: data.driver,
@@ -112,13 +110,6 @@ export const EventEditForm = () => {
                     <label htmlFor="description">Description: </label>
                     <input type="text" name="description" required autoFocus className="form-control"
                         value={current_event_post.description}
-                        onChange={handleFieldChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="locationImg">Location Image </label>
-                    <input type="text" name="locationImg" required autoFocus className="form-control"
-                        value={current_event_post.locationImg}
                         onChange={handleFieldChange}
                     />
                 </div>

@@ -12,7 +12,10 @@ import { EventEditForm } from "./components/events/EventEditForm"
 import { LocationEditForm } from "./components/locations/LocationEditForm"
 import { RoadEditForm } from "./components/roads/RoadEditForm"
 
-export const ApplicationViews = () => {
+
+
+
+export const ApplicationViews = (props) => {
     
     return <>
         <main style={{

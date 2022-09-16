@@ -5,39 +5,21 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 import { ApplicationViews } from "../ApplicationViews"
 
-export const SnapSpot = () => {
-  const [token, setTokenState] = useState(localStorage.getItem('token'))
 
-  const setToken = (newToken) => {
-    localStorage.setItem('token', newToken)
-    setTokenState(newToken)
-  }
+export const SnapSpot = () => (
+    <>
+        <Route render={() => {
+            if (localStorage.getItem("lu_token")) {
+                return <>
+                    <Route render={NavBar} />
+                    <Route render={props => <ApplicationViews {...props} />} />
+                </>
+            } else {
+                return <Redirect to="/login" />
+            }
+        }} />
 
-  const setUserId = (userId) => {
-    localStorage.setItem('userId', userId)
-  }
-
-  return <>
-    {
-      token
-        ?
-        <Route>
-          <NavBar token={token} setToken={setToken}/>
-          <ApplicationViews />
-        </Route>
-        :
-        <Redirect to="/login" />
-    }
-
-    <Route exact path="/login" >
-      <NavBar token={token} setToken={setToken} />
-      <Login token={token} setToken={setToken} setUserId={setUserId} />
-    </Route>
-
-    <Route path="/register" exact>
-      <NavBar token={token} setToken={setToken} />
-      <Register token={token} setToken={setToken} />
-    </Route>
-
-  </>
-}
+        <Route path="/login" render={Login} />
+        <Route path="/register" render={Register} />
+    </>
+)

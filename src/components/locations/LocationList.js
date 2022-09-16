@@ -87,8 +87,9 @@ export const LocationList = (props) => {
     }
 
     return (
-        <article className="location_posts_list">
+        <>
             {/* <SearchBar /> */}
+        <div className="search__section">
 
             <input
                     type="text"
@@ -108,15 +109,20 @@ export const LocationList = (props) => {
                     history.push({ pathname: "/location_posts/new" })
                 }}
             >Make New Post</button>
+        </div>
+    <article className="location_posts_list">
 
             {
                 filteredLocationPosts.map(location_post => {
-                    return <section key={`location--${location_post.id}`} className="location">
-                        <div className="location__title">{location_post.title}</div>
-                        <div className="location__description">{location_post.description}</div>
-                        <picture>
+                    return <section key={`location--${location_post.id}`} className="location_card">
+                        {/* <div className="location__title">{location_post.title}</div> */}
+                        <div className="img__box">
+                        <picture className="img__box">
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
+                        <div className="location__title">{location_post.title}</div>
+                        <div className="location__description">{location_post.description}</div>
+                        </div>
                         <div className="location__type">{location_post?.location_type}</div>
                         <div className="location">{location_post.locationId}</div>
 
@@ -132,5 +138,6 @@ export const LocationList = (props) => {
                 })
             }
         </article>
+        </>
     )
 }

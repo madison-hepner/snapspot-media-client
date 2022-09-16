@@ -50,8 +50,8 @@ export const EventEditForm = () => {
                         id: eventPostId,
                         event_name: data.event_name,
                         description: data.description,
-                        locationId: data.locationId,
-                        location_type: data.location_type,
+                        locationId: data.locationId.id,
+                        location_type: data.location_type.id,
                         driver: data.driver,
                         date: data.date
                     })

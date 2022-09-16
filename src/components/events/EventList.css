@@ -1,0 +1,46 @@
+
+.img__box {
+    align-content: center;
+    margin-left: -2em;
+    width: 400px;
+    height: 220px;
+    background-color: white;
+}
+
+.event_posts_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 3em;
+    padding-left: 10em;
+    padding-right: 20em;
+    display: flex;
+    align-content: center;
+    width: 75%;
+    height: auto;
+}
+
+.event_card {
+    padding-bottom: 1.5em;
+    padding-left: 4em;
+}
+
+
+
+/* .search__section {
+    display: flex;
+    justify-content: space-between;
+    width: 45em;
+    height: 30px;
+    background-color: whitesmoke;
+    border: 1px solid grey;
+    border-radius: .5em;
+}
+
+.search {
+    background-color: silver !important;
+    padding-right: 10px;
+    width: 50%;
+    border-radius: .2em;
+    font-weight: 500;
+} */

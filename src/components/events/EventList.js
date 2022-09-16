@@ -36,20 +36,22 @@ export const EventList = (props) => {
     }
 
     return (
-        <article className="event_posts_list">
-            <button className="btn btn-2 btn-sep icon-create"
+        <>
+        <button className="btn btn-2 btn-sep icon-create"
                 onClick={() => {
                     history.push({ pathname: "/event_posts/new" })
                 }}
             >Make New Post</button>
+        <article className="event_posts_list">
 
             {
                 event_posts.map(event_post => {
-                    return <section key={`event--${event_post.id}`} className="event">
+                    return <section key={`event--${event_post.id}`} className="event_card">
+                        <div className="img__box">
                         <div className="event__title">{event_post.event_name}</div>
                         <div className="event__description">{event_post.description}</div>
-                        <div className="location__type">{event_post.location_type}</div>
-                        <div className="location">{event_post.locationId}</div>
+                        <div className="location__type">{event_post.location_type.location_type}</div>
+                        <div className="location">{event_post.locationId.locationName}</div>
                         <div className="event">{event_post.date}</div>
 
                         <div className="media__delete">
@@ -59,10 +61,12 @@ export const EventList = (props) => {
                         </div>
 
                         <button classname="event_editButton" id={"edit--" + event_post.id} onClick={handleEditButton}>Edit Post</button>
+                        </div>
                         
                     </section>
                 })
             }
         </article>
+        </>
     )
 }

@@ -13,6 +13,7 @@ export const LocationList = (props) => {
     const history = useHistory()
     const {locationId} = useParams();
     const [searchInput, setSearchInput] = useState("");
+    const [ searchCategories, setSearchCategories] = useState("")
 
 
 
@@ -33,6 +34,7 @@ export const LocationList = (props) => {
     useEffect(() => {
         getAllLocations().then((data) => {
             setLocations(data)
+            // setLocation_Types(data)
             setFilteredLocationPosts(data)
         })
     }, [])
@@ -52,22 +54,46 @@ export const LocationList = (props) => {
             return false
         })
 
+        if (searchInput.length > 0) {
+            const x = location_posts.filter((location_post) => {
+                console.log(searchInput)
+                if (location_post.locationId.id === locationNameObj.id) {
+                    return true
+                }
+                return false
+    
+    
+        });
+            setFilteredLocationPosts(x)
+        }
 
+  
 
-      console.log(searchInput)
+}
 
-    if (searchInput.length > 0) {
-        const x = location_posts.filter((location_post) => {
-            console.log(searchInput)
-            if (location_post.locationId === locationNameObj.id) {
+    const handleCategoryChange = (e) => {
+
+        const locationTypeObj = location_types.find((l_t) => {
+            if (l_t.id === parseInt(e.target.value)) {
                 return true
             }
             return false
+        })
 
+        
+            const x = location_posts.filter((location_post) => {
+                
+                if (location_post.location_type.id === locationTypeObj.id) {
+                    return true
+                }
+                return false
+    
+    
+        });
+            setFilteredLocationPosts(x)
 
-    });
-        setFilteredLocationPosts(x)
-    }}
+}
+
 
     
 
@@ -110,7 +136,20 @@ export const LocationList = (props) => {
                 }}
             >Make New Post</button>
         </div>
-    <article className="location_posts_list">
+        <label htmlFor="locationTypeId">Filter:</label>
+                <select name="location_types_filter" required className="form-control"
+                        // value={currentLocationPost.location_type}
+                        onChange={handleCategoryChange}>
+                        <option value="0">Select Location Type</option>
+                        {
+                            location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
+                                {location_type.location_type}
+                            </option>)
+                        }
+
+                </select>
+        <article className="location_posts_list">
+
 
             {
                 filteredLocationPosts.map(location_post => {
@@ -120,19 +159,19 @@ export const LocationList = (props) => {
                         <picture className="img__box">
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
-                        <div className="location__title">{location_post.title}</div>
-                        <div className="location__description">{location_post.description}</div>
-                        </div>
-                        <div className="location__type">{location_post?.location_type}</div>
-                        <div className="location">{location_post.locationId}</div>
-
+                        <div className="location__type">{location_post?.location_type.location_type}</div>
+                        <div className="location">{location_post.locationId.locationName}</div>
+                        <div className="location">{location_post.description}</div>
                         <div className="media__delete">
                             <div className="media__delete__btns">
                                 <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteLocationPost(location_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
 
-                        <button classname="location_editButton" id={"edit--" + location_post.id} onClick={handleEditButton}>Edit Post</button>
+                        <button className="location_editButton" id={"edit--" + location_post.id} onClick={handleEditButton}>Edit Post</button>
+                        </div>
+
+                    
                         
                     </section>
                 })

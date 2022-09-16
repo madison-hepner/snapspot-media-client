@@ -50,7 +50,7 @@ export const RoadList = (props) => {
                             <img className="media__img" src={road_post.locationImg} alt="media image" />
                         </picture>
                         <div className="location__type">{road_post.road_type.road_type}</div>
-                        <div className="location">{road_post.locationId.id}</div>
+                        <div className="location">{road_post.locationId.locationName}</div>
 
                         <div className="media__delete">
                             <div className="media__delete__btns">

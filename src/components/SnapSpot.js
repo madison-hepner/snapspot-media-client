@@ -1,34 +1,43 @@
-import React from "react"
+import React, { useState } from "react"
 import { Route, Redirect } from "react-router-dom"
-import { ApplicationViews } from "../ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
-import "./SnapSpot.css"
+import { ApplicationViews } from "../ApplicationViews"
 
+export const SnapSpot = () => {
+  const [token, setTokenState] = useState(localStorage.getItem('token'))
 
-export const SnapSpot = () => (
-    <>
-        <Route render={() => {
-            if (localStorage.getItem("lu_token")) {
-                return <>
-                    <Route>
-                        <NavBar />
-                        <ApplicationViews />
-                    </Route>
-                </>
-            } else {
-                return <Redirect to="/login" />
-            }
-        }} />
+  const setToken = (newToken) => {
+    localStorage.setItem('token', newToken)
+    setTokenState(newToken)
+  }
 
-        <Route path="/login">
-            <Login />
+  const setUserId = (userId) => {
+    localStorage.setItem('userId', userId)
+  }
+
+  return <>
+    {
+      token
+        ?
+        <Route>
+          <NavBar token={token} setToken={setToken}/>
+          <ApplicationViews />
         </Route>
+        :
+        <Redirect to="/login" />
+    }
 
-        <Route path="/register">
-            <Register />
-        </Route>
+    <Route exact path="/login" >
+      <NavBar token={token} setToken={setToken} />
+      <Login token={token} setToken={setToken} setUserId={setUserId} />
+    </Route>
 
-    </>
-)
+    <Route path="/register" exact>
+      <NavBar token={token} setToken={setToken} />
+      <Register token={token} setToken={setToken} />
+    </Route>
+
+  </>
+}

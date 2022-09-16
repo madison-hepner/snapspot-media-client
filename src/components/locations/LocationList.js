@@ -57,7 +57,7 @@ export const LocationList = (props) => {
         if (searchInput.length > 0) {
             const x = location_posts.filter((location_post) => {
                 console.log(searchInput)
-                if (location_post.locationId === locationNameObj.id) {
+                if (location_post.locationId.id === locationNameObj.id) {
                     return true
                 }
                 return false
@@ -83,7 +83,7 @@ export const LocationList = (props) => {
         
             const x = location_posts.filter((location_post) => {
                 
-                if (location_post.location_type === locationTypeObj.id) {
+                if (location_post.location_type.id === locationTypeObj.id) {
                     return true
                 }
                 return false
@@ -156,8 +156,8 @@ export const LocationList = (props) => {
                         <picture>
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
-                        <div className="location__type">{location_post?.location_type}</div>
-                        <div className="location">{location_post.locationId}</div>
+                        <div className="location__type">{location_post?.location_type.location_type}</div>
+                        <div className="location">{location_post.locationId.locationName}</div>
 
                         <div className="media__delete">
                             <div className="media__delete__btns">

@@ -19,8 +19,10 @@ export const ApplicationViews = (props) => {
     
     return <>
         <main style={{
-            margin: "5rem 2rem",
-            backgroundColor: "lightgrey"
+            margin: "1rem 2rem",
+            backgroundColor: "#dddddd",
+
+            borderRadius: "1em"
         }}>
 
         <Route exact path="/">

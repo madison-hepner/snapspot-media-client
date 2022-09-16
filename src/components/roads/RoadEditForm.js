@@ -50,8 +50,8 @@ export const RoadEditForm = () => {
                         road_name: data.road_name,
                         description: data.description,
                         locationImg: data.locationImg,
-                        locationId: data.locationId,
-                        road_type: data.road_type,
+                        locationId: data.locationId.id,
+                        road_type: data.road_type.id,
                         driver: data.driver
                     })
                 })

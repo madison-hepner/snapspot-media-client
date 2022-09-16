@@ -13,6 +13,7 @@ export const LocationList = (props) => {
     const history = useHistory()
     const {locationId} = useParams();
     const [searchInput, setSearchInput] = useState("");
+    const [ searchCategories, setSearchCategories] = useState("")
 
 
 
@@ -33,6 +34,7 @@ export const LocationList = (props) => {
     useEffect(() => {
         getAllLocations().then((data) => {
             setLocations(data)
+            // setLocation_Types(data)
             setFilteredLocationPosts(data)
         })
     }, [])
@@ -52,22 +54,46 @@ export const LocationList = (props) => {
             return false
         })
 
+        if (searchInput.length > 0) {
+            const x = location_posts.filter((location_post) => {
+                console.log(searchInput)
+                if (location_post.locationId.id === locationNameObj.id) {
+                    return true
+                }
+                return false
+    
+    
+        });
+            setFilteredLocationPosts(x)
+        }
 
+  
 
-      console.log(searchInput)
+}
 
-    if (searchInput.length > 0) {
-        const x = location_posts.filter((location_post) => {
-            console.log(searchInput)
-            if (location_post.locationId === locationNameObj.id) {
+    const handleCategoryChange = (e) => {
+
+        const locationTypeObj = location_types.find((l_t) => {
+            if (l_t.id === parseInt(e.target.value)) {
                 return true
             }
             return false
+        })
 
+        
+            const x = location_posts.filter((location_post) => {
+                
+                if (location_post.location_type.id === locationTypeObj.id) {
+                    return true
+                }
+                return false
+    
+    
+        });
+            setFilteredLocationPosts(x)
 
-    });
-        setFilteredLocationPosts(x)
-    }}
+}
+
 
     
 
@@ -109,6 +135,19 @@ export const LocationList = (props) => {
                 }}
             >Make New Post</button>
 
+        <label htmlFor="locationTypeId">Filter:</label>
+                <select name="location_types_filter" required className="form-control"
+                        // value={currentLocationPost.location_type}
+                        onChange={handleCategoryChange}>
+                        <option value="0">Select Location Type</option>
+                        {
+                            location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
+                                {location_type.location_type}
+                            </option>)
+                        }
+
+                </select>
+
             {
                 filteredLocationPosts.map(location_post => {
                     return <section key={`location--${location_post.id}`} className="location">
@@ -117,8 +156,8 @@ export const LocationList = (props) => {
                         <picture>
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
-                        <div className="location__type">{location_post?.location_type}</div>
-                        <div className="location">{location_post.locationId}</div>
+                        <div className="location__type">{location_post?.location_type.location_type}</div>
+                        <div className="location">{location_post.locationId.locationName}</div>
 
                         <div className="media__delete">
                             <div className="media__delete__btns">

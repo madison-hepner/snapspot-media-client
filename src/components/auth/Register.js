@@ -64,12 +64,12 @@ export const Register = (props) => {
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputUsername"> username </label>
-                    <input ref={username} type="username" name="username" className="form-control" placeholder="Username" required />
+                    <label htmlFor="inputEmail"> User Name </label>
+                    <input ref={username} type="username" name="username" className="form-control" placeholder="User Name" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail"> email </label>
-                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email" required />
+                    <label htmlFor="inputEmail"> Email address </label>
+                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputPassword"> Password </label>

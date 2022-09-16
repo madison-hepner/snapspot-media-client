@@ -45,8 +45,8 @@ export const Login = props => {
                     <h1>SnapSpot</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Username </label>
-                        <input ref={username} type="username" id="username" className="form-control"  placeholder="User Name:" required autoFocus />
+                        <label htmlFor="inputEmail"> User Name </label>
+                        <input ref={username} type="username" id="username" className="form-control"  placeholder="User Name" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword"> Password </label>

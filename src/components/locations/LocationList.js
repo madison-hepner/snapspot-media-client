@@ -14,6 +14,7 @@ export const LocationList = (props) => {
     const {locationId} = useParams();
     const [searchInput, setSearchInput] = useState("");
     const [ searchCategories, setSearchCategories] = useState("")
+    const userId = parseInt(localStorage.getItem("userId"))
 
 
 
@@ -112,7 +113,9 @@ export const LocationList = (props) => {
         history.push(`/location_posts/${locationPostId}/edit`)
     }
 
+
     return (
+        <>
         <article className="location_posts_list">
             {/* <SearchBar /> */}
 
@@ -171,5 +174,8 @@ export const LocationList = (props) => {
                 })
             }
         </article>
+        </>
     )
+
+        
 }

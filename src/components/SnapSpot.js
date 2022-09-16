@@ -1,10 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import { Route, Redirect } from "react-router-dom"
-import { ApplicationViews } from "../ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
-import "./SnapSpot.css"
+import { ApplicationViews } from "../ApplicationViews"
 
 
 export const SnapSpot = () => (
@@ -12,23 +11,15 @@ export const SnapSpot = () => (
         <Route render={() => {
             if (localStorage.getItem("lu_token")) {
                 return <>
-                    <Route>
-                        <NavBar />
-                        <ApplicationViews />
-                    </Route>
+                    <Route render={NavBar} />
+                    <Route render={props => <ApplicationViews {...props} />} />
                 </>
             } else {
                 return <Redirect to="/login" />
             }
         }} />
 
-        <Route path="/login">
-            <Login />
-        </Route>
-
-        <Route path="/register">
-            <Register />
-        </Route>
-
+        <Route path="/login" render={Login} />
+        <Route path="/register" render={Register} />
     </>
 )

@@ -89,6 +89,7 @@ export const LocationPostForm = () => {
                     <select name="locationId" required className="form-control"
                         value={currentLocationPost.locationId}
                         onChange={handleInputChange}>
+                        <option value="0">Select Location State</option>
                         {
                             locations.map(location => <option key={location.id} value={location.id}>
                                 {location.locationName}
@@ -102,6 +103,7 @@ export const LocationPostForm = () => {
                     <select name="location_type" required className="form-control"
                         value={currentLocationPost.location_type}
                         onChange={handleInputChange}>
+                        <option value="0">Select Location Type</option>
                         {
                             location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
                                 {location_type.location_type}

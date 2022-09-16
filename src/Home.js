@@ -1,5 +1,6 @@
 import React from "react";
 import { SearchBar } from "./components/search/SearchBar";
+import { EventList } from "./components/events/EventList";
 
 export const Home = () => (
     <>
@@ -10,7 +11,6 @@ export const Home = () => (
             <div>more stuff here</div>
         </address>
 
-        <SearchBar />
 
     </>
 )

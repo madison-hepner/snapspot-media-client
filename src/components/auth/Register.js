@@ -1,73 +1,97 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom";
-import "./Login.css"
-import DateTimePicker from 'react-datetime-picker';
+import React from "react"
+import { Link } from "react-router-dom"
+import "./Auth.css"
 
-
-export const Register = () => {
-
-    const [registerUser, setRegisterUser] = useState({ firstName: "", lastName: "", email: "" })
-    const [conflictDialog, setConflictDialog] = useState(false)
-
-    const navigate = useHistory()
-
-    const handleInputChange = (event) => {
-        const newUser = { ...registerUser }
-        newUser[event.target.id] = event.target.value
-        setRegisterUser(newUser)
-    }
-
-    const existingUserCheck = () => {
-        // If your json-server URL is different, please change it below!
-        return fetch(`http://localhost:8088/users?email=${registerUser.email}`)
-            .then(res => res.json())
-            .then(user => !!user.length)
-    }
+export const Register = (props) => {
+    const firstName = React.createRef()
+    const lastName = React.createRef()
+    const username = React.createRef()
+    const email = React.createRef()
+    const bio = React.createRef()
+    const password = React.createRef()
+    const verifyPassword = React.createRef()
+    const passwordDialog = React.createRef()
 
     const handleRegister = (e) => {
         e.preventDefault()
 
-        existingUserCheck()
-            .then((userExists) => {
-                if (!userExists) {
-                    // If your json-server URL is different, please change it below!
-                    fetch("http://localhost:8088/users", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            email: registerUser.email,
-                            name: `${registerUser.firstName} ${registerUser.lastName}`
-                        })
-                    })
-                        .then(res => res.json())
-                        .then(createdUser => {
-                            if (createdUser.hasOwnProperty("id")) {
-                                // The user id is saved under the key nutshell_user in session Storage. Change below if needed!
-                                sessionStorage.setItem("nutshell_user", createdUser.id)
-                                navigate("/")
-                            }
-                        })
-                }
-                else {
-                    setConflictDialog(true)
-                }
-            })
+        if (password.current.value === verifyPassword.current.value) {
+            const newUser = {
+                "username": username.current.value,
+                "first_name": firstName.current.value,
+                "last_name": lastName.current.value,
+                "bio": bio.current.value,
+                "email": email.current.value,
+                "password": password.current.value
+            }
 
+            return fetch("http://127.0.0.1:8000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(newUser)
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if ("token" in res) {
+                        localStorage.setItem("lu_token", res.token)
+                        props.history.push("/")
+                    }
+                })
+        } else {
+            passwordDialog.current.showModal()
+        }
     }
 
     return (
         <main style={{ textAlign: "center" }}>
 
-            <dialog className="dialog dialog--password" open={conflictDialog}>
-                <div>Account with that email address already exists</div>
-                <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
+            <dialog className="dialog dialog--password" ref={passwordDialog}>
+                <div>Passwords do not match</div>
+                <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Application Name…</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
+                <fieldset>
+                    <label htmlFor="firstName"> First Name </label>
+                    <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="lastName"> Last Name </label>
+                    <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputEmail"> User Name </label>
+                    <input ref={username} type="username" name="username" className="form-control" placeholder="User Name" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputEmail"> Email address </label>
+                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputPassword"> Password </label>
+                    <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="verifyPassword"> Verify Password </label>
+                    <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="verifyPassword"> Verify Password </label>
+                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
+                </fieldset>
+                <fieldset style={{
+                    textAlign: "center"
+                }}>
+                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                </fieldset>
             </form>
+            <section className="link--register">
+                Already registered? <Link to="/login">Login</Link>
+            </section>
         </main>
     )
 }

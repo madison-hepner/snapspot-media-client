@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = () => {
+export const NavBar = (props) => {
     return (
         <ul className="navbar">
         <div className="navbar__background" >
@@ -22,9 +22,31 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/events">Events</Link>
             </li>
+
             <li className="navbar__item">
-                <Link className="navbar__link" to="/profile"> Profile</Link>
-            </li>
+            {
+                (localStorage.getItem("lu_token") !== null) ?
+
+                <div className="navbar__logout">
+                        <div className="nav-item">
+                          <span className="navbar-link nav-item navbar__span" onClick={() => {
+                                localStorage.removeItem("lu_token")
+                                props.history.push({ pathname: "/" })
+                            }}>Logout </span> 
+                        </div>
+                      </div>
+
+                        :
+                     <>
+                     <li className="nav-item">
+                         <Link className="nav-link" to="/login">Login</Link>
+                     </li>
+                     <li className="nav-item">
+                         <Link className="nav-link" to="/register">Register</Link>
+                     </li>
+                 </>
+         } 
+                         </li>       
         </ul>
     )
 }

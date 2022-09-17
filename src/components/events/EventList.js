@@ -45,12 +45,17 @@ export const EventList = (props) => {
 
             {
                 event_posts.map(event_post => {
-                    return <section key={`event--${event_post.id}`} className="event">
+                    return <section key={`event--${event_post.id}`} className="event_card">
+                        <fieldset className="event__card__grow">
+                        <div className="border__grow"></div>
+                        <div className="img__event__box">
+                        <div className="img__event__container">
                         <div className="event__title">{event_post.event_name}</div>
                         <div className="event__description">{event_post.description}</div>
                         <div className="location__type">{event_post.location_type.location_type}</div>
                         <div className="location">{event_post.locationId.locationName}</div>
                         <div className="event">{event_post.date}</div>
+                        </div>
 
                         <div className="media__delete">
                             <div className="media__delete__btns">
@@ -59,7 +64,8 @@ export const EventList = (props) => {
                         </div>
 
                         <button classname="event_editButton" id={"edit--" + event_post.id} onClick={handleEditButton}>Edit Post</button>
-                        
+                        </div>
+                        </fieldset>
                     </section>
                 })
             }

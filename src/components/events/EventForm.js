@@ -116,7 +116,7 @@ export const EventPostForm = () => {
                     // } else {
 
                     createEventPost(event_post)
-                        .then(() => history.push("/event_posts"))
+                        .then(() => history.push("/events"))
                 }}
                 className="btn btn-primary">Create</button>
         </form>

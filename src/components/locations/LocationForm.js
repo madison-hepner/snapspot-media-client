@@ -136,7 +136,7 @@ export const LocationPostForm = () => {
                     // } else {
 
                     createLocationPost(location_post)
-                        .then(() => history.push("/location_posts"))
+                        .then(() => history.push("/photos"))
                 }}
                 className="btn btn-primary">Create</button>
         </form>

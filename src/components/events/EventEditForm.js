@@ -76,23 +76,6 @@ export const EventEditForm = () => {
     }
 
 
-    // useEffect(() => {
-    //     getLocationTypes()
-    //     if (locationPostId) {
-    //         getLocationPostById(parseInt(locationPostId))
-    //             .then(editLocationPost => {
-    //                 setCurrentLocationPost({
-    //                     location_type: updateLocationPost.location_type,
-    //                     description: updateLocationPost.description,
-    //                     title: updateLocationPost.title,
-    //                     driver: updateLocationPost.driver,
-    //                     locationId: updateLocationPost.locationId.id
-    //                 })
-    //             })
-    //     }
-    // }, [])
-
-
 
 
     return (

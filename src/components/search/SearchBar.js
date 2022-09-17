@@ -39,8 +39,6 @@ export const SearchBar = () => {
 
     const handleChange = (e) => {
 
-      console.log(searchInput)
-
     if (searchInput.length > 0) {
         const x = locations.filter((location) => {
             console.log(searchInput)

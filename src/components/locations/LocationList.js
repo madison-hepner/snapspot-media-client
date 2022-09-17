@@ -14,13 +14,10 @@ export const LocationList = (props) => {
     const {locationId} = useParams();
     const [searchInput, setSearchInput] = useState("");
     const [ searchCategories, setSearchCategories] = useState("")
+    // const sessionUser = JSON.parse(window.sessionStorage.getItem("topspeed_user"))
+    // const sessionUserId = sessionUser.id
     const userId = parseInt(localStorage.getItem("userId"))
 
-
-
-    // useEffect(() => {
-    //     getAllLocations().then(data => setLocations(data))
-    // }, [])
     
     useEffect(() => {
         getLocationTypes()
@@ -57,7 +54,6 @@ export const LocationList = (props) => {
 
         if (searchInput.length > 0) {
             const x = location_posts.filter((location_post) => {
-                console.log(searchInput)
                 if (location_post.locationId.id === locationNameObj.id) {
                     return true
                 }
@@ -96,12 +92,6 @@ export const LocationList = (props) => {
 }
 
 
-    
-
-    // useEffect(() => {
-    //     getAllLocations(setLocations);
-    //   }, []);
-
 
     const handleDeleteLocationPost = (id) => {
         deleteLocationPost(id)
@@ -113,12 +103,12 @@ export const LocationList = (props) => {
         history.push(`/location_posts/${locationPostId}/edit`)
     }
 
-
     return (
         <>
         <article className="location_posts_list">
             {/* <SearchBar /> */}
-
+            <fieldset className="search__section">
+            <div className="search__bar">
             <input
                     type="text"
                     id="search"
@@ -126,23 +116,20 @@ export const LocationList = (props) => {
                     autoComplete="off"
                     onChange={handleInput}>
                     </input>
+
                 <button 
                         type="button"
                         onClick={() => {handleChange()}}>
                                 Search
                     </button>
-
-            <button className="btn btn-2 btn-sep icon-create"
-                onClick={() => {
-                    history.push({ pathname: "/location_posts/new" })
-                }}
-            >Make New Post</button>
-
-        <label htmlFor="locationTypeId">Filter:</label>
+                </div>
+        <h4 className="divider">OR</h4>
+        <div className="filter">
+        <label htmlFor="locationTypeId" className="hamburger">≡</label>
                 <select name="location_types_filter" required className="form-control"
                         // value={currentLocationPost.location_type}
                         onChange={handleCategoryChange}>
-                        <option value="0">Select Location Type</option>
+                        <option value="0">Search by Location Type</option>
                         {
                             location_types.map(location_type => <option key={location_type.id} value={location_type.id}>
                                 {location_type.location_type}
@@ -150,15 +137,28 @@ export const LocationList = (props) => {
                         }
 
                 </select>
+            </div>
+            </fieldset>
+
+                <button className="btn btn-2 btn-sep icon-create"
+                onClick={() => {
+                    history.push({ pathname: "/location_posts/new" })
+                }}
+            >Make New Post</button>
 
             {
                 filteredLocationPosts.map(location_post => {
-                    return <section key={`location--${location_post.id}`} className="location">
-                        <div className="location__title">{location_post.title}</div>
-                        <div className="location__description">{location_post.description}</div>
-                        <picture>
+                    return <section key={`location--${location_post.id}`} className="location_card">
+                        <fieldset className="card__grow">
+                        <div className="border__grow"></div>
+                        <div className="img__box">
+                        <div className="img__container">
+                        <picture className="img__box">
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
+                        </div>
+                        <div className="location__title">{location_post.title}</div>
+                        <div className="location__description">{location_post.description}</div>
                         <div className="location__type">{location_post?.location_type.location_type}</div>
                         <div className="location">{location_post.locationId.locationName}</div>
 
@@ -169,8 +169,12 @@ export const LocationList = (props) => {
                         </div>
 
                         <button classname="location_editButton" id={"edit--" + location_post.id} onClick={handleEditButton}>Edit Post</button>
-                        
+                        </div>
+                        </fieldset>
+                        <div className="border__grow__bottom"></div>
                     </section>
+
+                
                 })
             }
         </article>

@@ -143,7 +143,8 @@ const handleCategoryChange = (e) => {
             {
                 filteredRoadPosts.map(road_post => {
                     return <section key={`road--${road_post.id}`} className="road_card">
-                        <fieldset className="road_card__grow">
+                        <fieldset className="road__card__grow">
+                        <div className="border__grow"></div>
                         <div className="img__road__box">
                         <div className="img__road__container">
                         <picture className="img__road__box">

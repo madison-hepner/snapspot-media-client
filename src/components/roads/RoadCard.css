@@ -1,5 +1,6 @@
 .media__road__img {
     height: 200px;
+    /* margin-left:2em; */
     width: 400px; 
     max-width: 450px; 
     max-height: 450px;
@@ -12,26 +13,25 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding-top: 3em;
-    padding-left: 10em;
+    padding-left: 6.5em;
     padding-right: 20em;
     display: flex;
     align-content: center;
     width: 77%;
-    height: 50%;
-    overflow: scroll;
+    height: 100%;
     
 }
 .road_card, .road__card__grow {
     display: flex;
     padding-bottom: 3.5em;
     padding-top: 2em;
-    padding-left: 4em;
-    width: 457px;
+    padding-left: 3.5em;
+    width: 450px;
     height:350px;
     
 } 
 
-.road__card__grow { 
+/* .road__card__grow { 
     display: block;
     width: 420px;
     height:380px;
@@ -39,19 +39,17 @@
     border-top:1px solid white;
     border-bottom: 1px solid white;
 
-    }
+    } */
 
 .road__card__grow:hover { 
     display: block;
-    width: 457px;
-    transform: scale(1.015); 
+    transform: scale(1.011); 
     border-top:4px solid white;
     border-bottom: 4px solid white;
     }
 
 .img__road__box {
     align-content: center;
-    margin-left: -2em;
     width: 400px;
     height: 380px;
     background-color: white;
@@ -64,7 +62,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: -3em;
-    margin-left: -9.8em;
+    margin-left: -5.5em;
     width: 38em;
     height: 30px;
     border-radius: .5em;

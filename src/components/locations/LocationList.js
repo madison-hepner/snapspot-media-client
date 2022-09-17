@@ -14,13 +14,10 @@ export const LocationList = (props) => {
     const {locationId} = useParams();
     const [searchInput, setSearchInput] = useState("");
     const [ searchCategories, setSearchCategories] = useState("")
+    // const sessionUser = JSON.parse(window.sessionStorage.getItem("topspeed_user"))
+    // const sessionUserId = sessionUser.id
     const userId = parseInt(localStorage.getItem("userId"))
 
-
-
-    // useEffect(() => {
-    //     getAllLocations().then(data => setLocations(data))
-    // }, [])
     
     useEffect(() => {
         getLocationTypes()
@@ -106,7 +103,6 @@ export const LocationList = (props) => {
         const locationPostId = parseInt(e.target.id.split("--")[1])
         history.push(`/location_posts/${locationPostId}/edit`)
     }
-
 
     return (
         <>

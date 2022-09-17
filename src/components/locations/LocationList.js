@@ -54,7 +54,6 @@ export const LocationList = (props) => {
 
         if (searchInput.length > 0) {
             const x = location_posts.filter((location_post) => {
-                console.log(searchInput)
                 if (location_post.locationId.id === locationNameObj.id) {
                     return true
                 }

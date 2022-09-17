@@ -96,12 +96,6 @@ export const LocationList = (props) => {
 }
 
 
-    
-
-    // useEffect(() => {
-    //     getAllLocations(setLocations);
-    //   }, []);
-
 
     const handleDeleteLocationPost = (id) => {
         deleteLocationPost(id)

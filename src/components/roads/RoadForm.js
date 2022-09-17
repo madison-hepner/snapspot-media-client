@@ -134,7 +134,7 @@ export const RoadPostForm = () => {
                     // } else {
 
                     createRoadPost(road_post)
-                        .then(() => history.push("/road_posts"))
+                        .then(() => history.push("/roads"))
                 }}
                 className="btn btn-primary">Create</button>
         </form>

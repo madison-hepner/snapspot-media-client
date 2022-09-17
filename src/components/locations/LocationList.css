@@ -13,13 +13,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding-top: 3em;
-    padding-left: 10em;
+    padding-left: 6.5em;
     padding-right: 20em;
     display: flex;
     align-content: center;
     width: 77%;
-    height: 50%;
-    overflow: scroll;
+    height: 100%;
     
 }
 .location_card, .card__grow {
@@ -63,7 +62,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: -3em;
-    margin-left: -9.8em;
+    margin-left: -5.5em;
     width: 38em;
     height: 30px;
     border-radius: .5em;

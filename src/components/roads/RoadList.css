@@ -29,9 +29,9 @@
     width: 457px;
     height:350px;
     
-} */
+} 
 
-/* .card__grow { 
+.card__grow { 
     display: block;
     width: 420px;
     height:380px;
@@ -39,8 +39,8 @@
     border-top:1px solid white;
     border-bottom: 1px solid white;
 
-    } */
-/* 
+    }
+
 .card__grow:hover { 
     display: block;
     width: 457px;

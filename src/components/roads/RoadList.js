@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react"
 import { getAllRoadPosts, getRoadTypes, getLocations, deleteRoadPost } from "./RoadManager.js"
-import "./RoadList.css"
+import "./RoadCard.css"
 import { useHistory, useParams } from 'react-router-dom'
 
 export const RoadList = (props) => {
@@ -106,7 +106,7 @@ const handleCategoryChange = (e) => {
             <div className="search__road__bar">
             <input
                     type="text"
-                    id="search"
+                    id="road__search"
                     placeholder="Search By State"
                     autoComplete="off"
                     onChange={handleInput}>

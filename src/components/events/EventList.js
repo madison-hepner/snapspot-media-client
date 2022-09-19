@@ -25,6 +25,33 @@ export const EventList = (props) => {
             .then(setLocation)
     }, [])
 
+
+
+//     const handleChange = (e) => {
+
+//         const locationNameObj = locations.find((l) => {
+//             if (l.locationName === searchInput) {
+//                 return true
+//             }
+//             return false
+//         })
+
+//         if (searchInput.length > 0) {
+//             const x = event_posts.filter((event_post) => {
+//                 if (event_post.locationId.id === locationNameObj.id) {
+//                     return true
+//                 }
+//                 return false
+    
+    
+//         });
+//             setFilteredEventPosts(x)
+//         }
+
+  
+
+// }
+
     const handleDeleteEventPost = (id) => {
         deleteEventPost(id)
         .then(() => getAllEventPosts().then(setEventPosts));

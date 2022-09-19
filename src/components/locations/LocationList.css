@@ -18,7 +18,9 @@
     display: flex;
     align-content: center;
     width: 77%;
-    height: 100%;
+    height: 90%;
+    overflow: scroll;
+    scroll-behavior: smooth;
     
 }
 .location_card, .card__grow {
@@ -44,8 +46,8 @@
 .card__grow:hover { 
     display: block;
     transform: scale(1.011); 
-    border-top:4px solid white;
-    border-bottom: 4px solid white;
+    /* border-top:4px solid white;
+    border-bottom: 4px solid white; */
     }
 
 .img__box {
@@ -99,3 +101,87 @@
     height: 20px;
     width: 200px;
 }
+
+.buttons_section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+
+}
+
+.media__delete__btns {
+    padding-top: .09em;
+}
+
+  
+.delete__btns__btn {
+    padding: .2em;
+    background-color: white;
+    color: grey !important;
+    padding-top: .09em;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+  
+.delete__btns__btn:hover {
+    background-color: white;
+    border-bottom: 2px solid black;
+    color: grey;
+    font-weight: 600;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+  
+
+.edit__btns {
+    padding-top: .09em;
+}
+
+  
+.edit__btn {
+    padding: .2em;
+    background-color: white;
+    color: grey !important;
+    padding-top: .09em;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+  
+  .edit__btn:hover {
+    background-color: white;
+    border-bottom: 2px solid black;
+    color: grey;
+    font-weight: 600;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+
+  .location__name {
+    padding-left: .3em;
+  }
+
+  .location__section {
+    padding-left: .3em;
+    font-size: 10pt;
+    display: flex;
+    width: 400px;
+    height: auto;
+  }
+  
+  .location__title__section {
+    padding-left: .3em;
+  }
+
+  .location__title {
+    font-weight: 700;
+  }
+

@@ -96,6 +96,7 @@ export const LocationList = (props) => {
     const handleDeleteLocationPost = (id) => {
         deleteLocationPost(id)
         .then(() => getAllLocations().then(setLocations));
+        history.push(`/photos`)
     };
 
     const handleEditButton = e => {
@@ -157,19 +158,30 @@ export const LocationList = (props) => {
                             <img className="media__img" src={location_post.locationImg} alt="media image" />
                         </picture>
                         </div>
-                        <div className="location__title">{location_post.title}</div>
-                        <div className="location__description">{location_post.description}</div>
-                        <div className="location__type">{location_post?.location_type.location_type}</div>
-                        <div className="location">{location_post.locationId.locationName}</div>
+                        <fieldset className="location__title__section">
+                            <div className="location__title">{location_post.title}</div>
+                            <div className="location__description"><small>{location_post.description}</small></div>
+                        </fieldset>
+                        <fieldset className="location__section">
+                                <div className="location__type">{location_post?.location_type.location_type} in </div>
+                                <div className="location__name">{location_post.locationId.locationName}</div>
+                        </fieldset>
 
+                        <fieldset className="buttons_section">
                         <div className="media__delete">
                             <div className="media__delete__btns">
-                                <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteLocationPost(location_post.id)} ><small>delete post</small></button>
+                                <button type="button" className="delete__btns__btn" id="delete__btn" onClick={() => handleDeleteLocationPost(location_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
-
-                        <button classname="location_editButton" id={"edit--" + location_post.id} onClick={handleEditButton}>Edit Post</button>
+                        <div className="media__delete__btns">
+                            <div className="edit__btns">
+                                <button className="edit__btn" id={"edit--" + location_post.id} onClick={handleEditButton}>edit post</button>
+                            </div>
                         </div>
+                        </fieldset>
+                        </div>
+
+                        
                         </fieldset>
                         <div className="border__grow__bottom"></div>
                     </section>

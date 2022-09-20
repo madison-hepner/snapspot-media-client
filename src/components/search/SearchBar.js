@@ -41,7 +41,6 @@ export const SearchBar = () => {
 
     if (searchInput.length > 0) {
         const x = locations.filter((location) => {
-            console.log(searchInput)
             if (location.locationName === searchInput) {
                 return true
             }

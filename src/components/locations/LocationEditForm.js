@@ -64,7 +64,6 @@ export const LocationEditForm = () => {
 
 
     useEffect(() => {
-        console.log('currentLocationPost', current_location_post)
     }, [current_location_post])
 
     const handleFieldChange = (domEvent) => {

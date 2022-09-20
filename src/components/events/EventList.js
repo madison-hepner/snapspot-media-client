@@ -8,6 +8,7 @@ export const EventList = (props) => {
     const [location_types, setLocation_Types] = useState([])
     const [locations, setLocation] = useState([])
     const history = useHistory()
+    const driverId = parseInt(localStorage.getItem("driverId"))
 
     //not sure
 
@@ -25,32 +26,6 @@ export const EventList = (props) => {
             .then(setLocation)
     }, [])
 
-
-
-//     const handleChange = (e) => {
-
-//         const locationNameObj = locations.find((l) => {
-//             if (l.locationName === searchInput) {
-//                 return true
-//             }
-//             return false
-//         })
-
-//         if (searchInput.length > 0) {
-//             const x = event_posts.filter((event_post) => {
-//                 if (event_post.locationId.id === locationNameObj.id) {
-//                     return true
-//                 }
-//                 return false
-    
-    
-//         });
-//             setFilteredEventPosts(x)
-//         }
-
-  
-
-// }
 
     const handleDeleteEventPost = (id) => {
         deleteEventPost(id)
@@ -84,6 +59,10 @@ export const EventList = (props) => {
                         <div className="event">{event_post.date}</div>
                         </div>
 
+                        { event_post.driver.id === driverId
+                            ? 
+                        <>
+
                         <div className="media__delete">
                             <div className="media__delete__btns">
                                 <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteEventPost(event_post.id)} ><small>delete post</small></button>
@@ -91,6 +70,10 @@ export const EventList = (props) => {
                         </div>
 
                         <button classname="event_editButton" id={"edit--" + event_post.id} onClick={handleEditButton}>Edit Post</button>
+                            </>
+
+                         : ""
+                        }
                         </div>
                         </fieldset>
                     </section>

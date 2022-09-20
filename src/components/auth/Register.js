@@ -38,6 +38,7 @@ export const Register = (props) => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("lu_token", res.token)
+                        localStorage.setItem("driverId", res.driverId)
                         props.history.push("/")
                     }
                 })

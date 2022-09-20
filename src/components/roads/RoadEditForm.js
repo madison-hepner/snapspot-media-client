@@ -64,7 +64,6 @@ export const RoadEditForm = () => {
 
 
     useEffect(() => {
-        console.log('currentRoadPost', current_road_post)
     }, [current_road_post])
 
     const handleFieldChange = (domEvent) => {

@@ -89,6 +89,7 @@ export const RoadPostForm = () => {
                     <select name="locationId" required className="form-control"
                         value={currentRoadPost.locationId}
                         onChange={handleInputChange}>
+                        <option value="0">Select Location State</option>
                         {
                             locations.map(location => <option key={location.id} value={location.id}>
                                 {location.locationName}
@@ -102,6 +103,7 @@ export const RoadPostForm = () => {
                     <select name="road_type" required className="form-control"
                         value={currentRoadPost.road_type}
                         onChange={handleInputChange}>
+                        <option value="0">Select Road Type</option>
                         {
                             road_types.map(road_type => <option key={road_type.id} value={road_type.id}>
                                 {road_type.road_type}

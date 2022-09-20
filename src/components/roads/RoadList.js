@@ -10,6 +10,7 @@ export const RoadList = (props) => {
     const [filteredRoadPosts, setFilteredRoadPosts] = useState([])
     const [searchInput, setSearchInput] = useState("");
     const [ searchCategories, setSearchCategories] = useState("")
+    const driverId = parseInt(localStorage.getItem("driverId"))
 
     const history = useHistory()
     
@@ -48,7 +49,6 @@ export const RoadList = (props) => {
 
         if (searchInput.length > 0) {
             const x = road_posts.filter((road_post) => {
-                console.log(searchInput)
                 if (road_post.locationId.id === locationNameObj.id) {
                     return true
                 }
@@ -161,6 +161,10 @@ const handleCategoryChange = (e) => {
                         </fieldset>
                         <hr></hr>
 
+                        <>
+                        { road_post.driver.id === driverId
+                            ? 
+
                         <fieldset className="buttons_section">
                         <div className="media__delete">
                             <div className="media__delete__btns">
@@ -171,8 +175,12 @@ const handleCategoryChange = (e) => {
                             <div className="edit__btns">
                                 <button className="edit__btn" id={"edit--" + road_post.id} onClick={handleEditButton}>edit post</button>
                             </div>
+                            
                         </div>
                         </fieldset>
+                            : ""
+                        }
+                         </>              
                         </div>
 
                         

@@ -16,7 +16,8 @@ export const LocationList = (props) => {
     const [ searchCategories, setSearchCategories] = useState("")
     // const sessionUser = JSON.parse(window.sessionStorage.getItem("topspeed_user"))
     // const sessionUserId = sessionUser.id
-    const userId = parseInt(localStorage.getItem("userId"))
+    const driverId = parseInt(localStorage.getItem("driverId"))
+
 
     
     useEffect(() => {
@@ -167,7 +168,10 @@ export const LocationList = (props) => {
                                 <div className="location__name">{location_post.locationId.locationName}</div>
                         </fieldset>
                         <hr></hr>
-
+                        <>
+                        { location_post.driver.id === driverId
+                            ? 
+                        
                         <fieldset className="buttons_section">
                         <div className="media__delete">
                             <div className="media__delete__btns">
@@ -180,6 +184,9 @@ export const LocationList = (props) => {
                             </div>
                         </div>
                         </fieldset>
+                        : ""
+                        }
+                        </>
                         </div>
 
                         

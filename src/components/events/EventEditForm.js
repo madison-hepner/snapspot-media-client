@@ -65,7 +65,6 @@ export const EventEditForm = () => {
 
 
     useEffect(() => {
-        console.log('currentEventPost', current_event_post)
     }, [current_event_post])
 
     const handleFieldChange = (domEvent) => {

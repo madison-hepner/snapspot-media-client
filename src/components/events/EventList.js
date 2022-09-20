@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react"
-import { getAllEventPosts, getLocationTypes, getLocations, deleteEventPost } from "./EventManager.js"
+import { getAllEventPosts, getLocationTypes, getLocations, deleteEventPost, joinEvent, leaveEvent } from "./EventManager.js"
 import "./EventList.css"
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -8,8 +8,6 @@ export const EventList = (props) => {
     const [location_types, setLocation_Types] = useState([])
     const [locations, setLocation] = useState([])
     const history = useHistory()
-
-    //not sure
 
     useEffect(() => {
         getAllEventPosts().then(data => setEventPosts(data))
@@ -27,30 +25,7 @@ export const EventList = (props) => {
 
 
 
-//     const handleChange = (e) => {
 
-//         const locationNameObj = locations.find((l) => {
-//             if (l.locationName === searchInput) {
-//                 return true
-//             }
-//             return false
-//         })
-
-//         if (searchInput.length > 0) {
-//             const x = event_posts.filter((event_post) => {
-//                 if (event_post.locationId.id === locationNameObj.id) {
-//                     return true
-//                 }
-//                 return false
-    
-    
-//         });
-//             setFilteredEventPosts(x)
-//         }
-
-  
-
-// }
 
     const handleDeleteEventPost = (id) => {
         deleteEventPost(id)
@@ -82,6 +57,15 @@ export const EventList = (props) => {
                         <div className="location__type">{event_post.location_type.location_type}</div>
                         <div className="location">{event_post.locationId.locationName}</div>
                         <div className="event">{event_post.date}</div>
+                        {
+                            event_post.joined
+                                ? <button className="btn btn-3"
+                                    onClick={() => leaveEvent(event_post.id)}
+                                >Leave</button>
+                                : <button className="btn btn-2"
+                                    onClick={() => joinEvent(event_post.id)}
+                                >Join</button>
+                        }
                         </div>
 
                         <div className="media__delete">

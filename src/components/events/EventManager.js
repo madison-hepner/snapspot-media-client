@@ -68,3 +68,24 @@ export const updateEventPost = (editedEventPost, id) => {
         body: JSON.stringify(editedEventPost)
     })
 }
+
+const leaveEvent = eventId => {
+    return fetch(`http://localhost:8000/event_posts/${eventId}/signup`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(getAllEventPosts)
+}
+
+const joinEvent = eventId => {
+    return fetch(`http://localhost:8000/event_posts/${eventId}/signup`, {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(res => res.json())
+        .then(getAllEventPosts)
+}

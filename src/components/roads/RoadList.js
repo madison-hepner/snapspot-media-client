@@ -142,31 +142,45 @@ const handleCategoryChange = (e) => {
             >Make New Post</button>
             {
                 filteredRoadPosts.map(road_post => {
-                    return <section key={`road--${road_post.id}`} className="road_card">
-                        <fieldset className="road__card__grow">
+                    return <section key={`location--${road_post.id}`} className="location_card">
+                        <fieldset className="card__grow">
                         <div className="border__grow"></div>
-                        <div className="img__road__box">
-                        <div className="img__road__container">
-                        <picture className="img__road__box">
-                            <img className="media__road__img" src={road_post.locationImg} alt="media image" />
+                        <div className="img__box">
+                        <div className="img__container">
+                        <picture className="img__box">
+                            <img className="media__img" src={road_post.locationImg} alt="media image" />
                         </picture>
                         </div>
-                        <div className="road__title">{road_post.road_name}</div>
-                        <div className="road__description">{road_post.description}</div>
-                        <div className="road__location__type">{road_post.road_type.road_type}</div>
-                        <div className="road__location">{road_post.locationId.locationName}</div>
+                        <fieldset className="location__title__section">
+                            <div className="location__title">{road_post.road_name}</div>
+                            <div className="location__description"><small>{road_post.description}</small></div>
+                        </fieldset>
+                        <fieldset className="location__section">
+                                <div className="location__type">{road_post?.road_type.road_type} in </div>
+                                <div className="location__name">{road_post.locationId.locationName}</div>
+                        </fieldset>
+                        <hr></hr>
 
-                        <div className="road__media__delete">
-                            <div className="road__media__delete__btns">
-                                <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteRoadPost(road_post.id)} ><small>delete post</small></button>
+                        <fieldset className="buttons_section">
+                        <div className="media__delete">
+                            <div className="media__delete__btns">
+                                <button type="button" className="delete__btns__btn" id="delete__btn" onClick={() => handleDeleteRoadPost(road_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
-
-                        <button classname="road_editButton" id={"edit--" + road_post.id} onClick={handleEditButton}>Edit Post</button>
+                        <div className="media__delete__btns">
+                            <div className="edit__btns">
+                                <button className="edit__btn" id={"edit--" + road_post.id} onClick={handleEditButton}>edit post</button>
+                            </div>
                         </div>
                         </fieldset>
+                        </div>
+
                         
+                        </fieldset>
+                        <div className="border__grow__bottom"></div>
                     </section>
+
+                
                 })
             }
         </article>

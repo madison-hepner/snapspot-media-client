@@ -36,8 +36,6 @@
     width: 420px;
     height:380px;
     transition: all .09s ease-in-out; 
-    border-top:1px solid white;
-    border-bottom: 1px solid white;
 
     }
 
@@ -45,8 +43,6 @@
     display: block;
     width: 457px;
     transform: scale(1.015); 
-    border-top:4px solid white;
-    border-bottom: 4px solid white;
     }
 
 .img__event__box {

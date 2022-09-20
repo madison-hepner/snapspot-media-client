@@ -1,5 +1,6 @@
 .media__img {
     height: 200px;
+    /* margin-left:2em; */
     width: 400px; 
     max-width: 450px; 
     max-height: 450px;
@@ -7,31 +8,32 @@
     vertical-align: middle;
 }
 
-.road_posts_list {
+.location_posts_list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding-top: 3em;
-    padding-left: 10em;
+    padding-left: 6.5em;
     padding-right: 20em;
     display: flex;
     align-content: center;
     width: 77%;
-    height: 50%;
+    height: 95%;
     overflow: scroll;
+    scroll-behavior: smooth;
     
 }
-.road_card, .card__grow {
+.location_card, .card__grow {
     display: flex;
     padding-bottom: 3.5em;
     padding-top: 2em;
-    padding-left: 4em;
-    width: 457px;
+    padding-left: 3.5em;
+    width: 450px;
     height:350px;
     
-} 
+}
 
-.card__grow { 
+/* .card__grow { 
     display: block;
     width: 420px;
     height:380px;
@@ -39,19 +41,17 @@
     border-top:1px solid white;
     border-bottom: 1px solid white;
 
-    }
+    } */
 
 .card__grow:hover { 
     display: block;
-    width: 457px;
-    transform: scale(1.015); 
-    border-top:4px solid white;
-    border-bottom: 4px solid white;
+    transform: scale(1.011); 
+    /* border-top:4px solid white;
+    border-bottom: 4px solid white; */
     }
 
 .img__box {
     align-content: center;
-    margin-left: -2em;
     width: 400px;
     height: 380px;
     background-color: white;
@@ -64,7 +64,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: -3em;
-    margin-left: -9.8em;
+    margin-left: -5.5em;
     width: 38em;
     height: 30px;
     border-radius: .5em;
@@ -87,6 +87,7 @@
 
 .filter {
     display: flex;
+    /* justify-content: left; */
     width: 260px;
 }
 
@@ -96,7 +97,91 @@
     height: 40px;
 }
 
-.road_types_filter {
+.location_types_filter {
     height: 20px;
     width: 200px;
 }
+
+.buttons_section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+
+}
+
+.media__delete__btns {
+    padding-top: .09em;
+}
+
+  
+.delete__btns__btn {
+    padding: .2em;
+    background-color: white;
+    color: grey !important;
+    padding-top: .09em;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+  
+.delete__btns__btn:hover {
+    background-color: white;
+    border-bottom: 2px solid black;
+    color: grey;
+    font-weight: 600;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+  
+
+.edit__btns {
+    padding-top: .09em;
+}
+
+  
+.edit__btn {
+    padding: .2em;
+    background-color: white;
+    color: grey !important;
+    padding-top: .09em;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+  
+  .edit__btn:hover {
+    background-color: white;
+    border-bottom: 2px solid black;
+    color: grey;
+    font-weight: 600;
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: .5em;
+  }
+
+  .location__name {
+    padding-left: .3em;
+  }
+
+  .location__section {
+    padding-left: .3em;
+    font-size: 10pt;
+    display: flex;
+    width: 400px;
+    height: auto;
+  }
+  
+  .location__title__section {
+    padding-left: .3em;
+  }
+
+  .location__title {
+    font-weight: 700;
+  }
+

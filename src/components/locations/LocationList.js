@@ -166,6 +166,7 @@ export const LocationList = (props) => {
                                 <div className="location__type">{location_post?.location_type.location_type} in </div>
                                 <div className="location__name">{location_post.locationId.locationName}</div>
                         </fieldset>
+                        <hr></hr>
 
                         <fieldset className="buttons_section">
                         <div className="media__delete">

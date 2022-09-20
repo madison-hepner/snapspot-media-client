@@ -44,8 +44,6 @@
 .road__card__grow:hover { 
     display: block;
     transform: scale(1.011); 
-    border-top:4px solid white;
-    border-bottom: 4px solid white;
     }
 
 .img__road__box {

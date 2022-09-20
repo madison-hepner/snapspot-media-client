@@ -11,6 +11,7 @@ export const Register = (props) => {
     const password = React.createRef()
     const verifyPassword = React.createRef()
     const passwordDialog = React.createRef()
+    
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -22,6 +23,7 @@ export const Register = (props) => {
                 "last_name": lastName.current.value,
                 "email": email.current.value,
                 "password": password.current.value
+                // "permissions": [1,2,3]
             }
 
             return fetch("http://127.0.0.1:8000/register", {

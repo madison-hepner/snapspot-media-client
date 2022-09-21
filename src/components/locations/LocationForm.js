@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
 import { createLocationPost, getLocationTypes, getLocationPostById, getLocations } from "./LocationManager"
+import "./LocationForm.css"
 
 
 export const LocationPostForm = () => {

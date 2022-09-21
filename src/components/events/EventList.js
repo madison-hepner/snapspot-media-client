@@ -38,12 +38,15 @@ export const EventList = (props) => {
     }
 
     return (
-        <article className="event_posts_list">
-            <button className="btn btn-2 btn-sep icon-create"
+        <>
+
+    <button className="btn btn-2 btn-sep icon-create"
                 onClick={() => {
                     history.push({ pathname: "/event_posts/new" })
                 }}
             >Make New Post</button>
+
+        <article className="event_posts_list">
 
             {
                 event_posts.map(event_post => {
@@ -51,34 +54,42 @@ export const EventList = (props) => {
                         <fieldset className="event__card__grow">
                         <div className="border__grow"></div>
                         <div className="img__event__box">
-                        <div className="img__event__container">
+    
                         <div className="event__title">{event_post.event_name}</div>
+                        <hr></hr>
                         <div className="event__description">{event_post.description}</div>
-                        <div className="location__type">{event_post.location_type.location_type}</div>
-                        <div className="location">{event_post.locationId.locationName}</div>
-                        <div className="event">{event_post.date}</div>
-                        </div>
-
+                        <fieldset className="event__location__section">
+                            <div className="location__types">{event_post.location_type.location_type} event in {event_post.locationId.locationName}</div>
+                            {/* <div className="location__types">{event_post.locationId.locationName}</div> */}
+                        </fieldset>
+                            <div className="event"><small>Happening on:{event_post.date}</small></div>
+                            <>
                         { event_post.driver.id === driverId
                             ? 
-                        <>
-
+                        
+                        <fieldset className="buttons_section">
                         <div className="media__delete">
                             <div className="media__delete__btns">
-                                <button type="button" className="media__delete__btns__btn" id="media__delete__btn" onClick={() => handleDeleteEventPost(event_post.id)} ><small>delete post</small></button>
+                                <button type="button" className="delete__btns__btn" id="delete__btn" onClick={() => handleDeleteEventPost(event_post.id)} ><small>delete post</small></button>
                             </div>
                         </div>
-
-                        <button classname="event_editButton" id={"edit--" + event_post.id} onClick={handleEditButton}>Edit Post</button>
-                            </>
-
-                         : ""
-                        }
+                        <div className="media__delete__btns">
+                            <div className="edit__btns">
+                                <button className="edit__btn" id={"edit--" + event_post.id} onClick={handleEditButton}>edit post</button>
+                            </div>
                         </div>
+                        </fieldset>
+                        : ""
+                        }
+                        </>
+                        </div>
+
+                        
                         </fieldset>
                     </section>
                 })
             }
         </article>
+        </>
     )
 }

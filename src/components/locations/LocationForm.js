@@ -46,33 +46,40 @@ export const LocationPostForm = () => {
 
     return (
         <form className="gameForm">
-            <h2 className="gameForm__title">Make New Post</h2>
-            <fieldset>
+            <h2 className="gameForm__title">Make A New Post</h2>
+            <fieldset className="form__items">
                 <div className="form-group">
-                    <label htmlFor="title">Title: </label>
-                    <input type="text" name="title" required autoFocus className="form-control"
+                <fieldset className="location_title">
+                    <label className="location"htmlFor="title">Make a title...</label>
+                    <input type="text" name="title" required autoFocus className="location__title"
                         value={currentLocationPost.title}
                         onChange={handleInputChange}
                     />
+                    </fieldset>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">Description: </label>
-                    <input type="text" name="description" required autoFocus className="form-control"
+                <fieldset className="location_description">
+                    <label className="description" htmlFor="description">Make a description...</label>
+                    <input type="text" name="description" required autoFocus className="location__description"
                         value={currentLocationPost.description}
                         onChange={handleInputChange}
                     />
+                    </fieldset>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="locationImg">Location Image </label>
-                    <input type="text" name="locationImg" required autoFocus className="form-control"
+                <fieldset className="location_img">
+                    <label className="locationImg" htmlFor="locationImg">Upload image url...</label>
+                    <input type="text" name="locationImg" required autoFocus className="location__img"
                         value={currentLocationPost.locationImg}
                         onChange={handleInputChange}
                     />
+                    </fieldset>
                 </div>
                 {/* change to be locationId selection from dropdown  */}
                 <div className="form-group">
-                    <label htmlFor="locationId">Location State: </label>
-                    <select name="locationId" required className="form-control"
+                <fieldset className="location_id">
+                    <label className="location_name" htmlFor="locationId">Add location state...</label>
+                    <select name="locationId" required className="location_select"
                         value={currentLocationPost.locationId}
                         onChange={handleInputChange}>
                         <option value="0">Select Location State</option>
@@ -83,10 +90,12 @@ export const LocationPostForm = () => {
                         }
 
                     </select>
+                </fieldset>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="locationTypeId">Location Type:</label>
-                    <select name="location_type" required className="form-control"
+                    <fieldset className="location_type">
+                    <label className="location_type_label" htmlFor="locationTypeId">Add location type...</label>
+                    <select name="location_type" required className="location_select"
                         value={currentLocationPost.location_type}
                         onChange={handleInputChange}>
                         <option value="0">Select Location Type</option>
@@ -97,6 +106,7 @@ export const LocationPostForm = () => {
                         }
 
                     </select>
+                    </fieldset>
                 </div>
             </fieldset>
 
@@ -125,7 +135,7 @@ export const LocationPostForm = () => {
                     createLocationPost(location_post)
                         .then(() => history.push("/photos"))
                 }}
-                className="btn btn-primary">Create</button>
+                className="btn__create">create post</button>
         </form>
     )
 }
